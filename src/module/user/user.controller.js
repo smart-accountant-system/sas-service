@@ -43,7 +43,7 @@ export const createUser = async (req, res) => {
     // if (req.user.role < req.body.role) {
     //   return res.sendStatus(HTTPStatus.FORBIDDEN);
     // }
-    const user = await User.create({ ...req.body, createdBy: req.user._id });
+    const user = await User.create({ ...req.body });
     return res.status(HTTPStatus.CREATED).json(user.toJSON());
   } catch (error) {
     return res.status(HTTPStatus.BAD_REQUEST).json(error.message);
