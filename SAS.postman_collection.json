@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "5b38d997-3e49-43e7-8bf9-de4eff13cdb8",
+		"name": "SAS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[User] Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"ducthotran2010\",\n\t\"password\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[User] Search",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTZlYTQwMGZiZTIyNzQxMjJkZTQiLCJleHAiOjE1NTgyMjgzODEsImlhdCI6MTU1ODE0MTk4MX0.URGbeQ1HjON4cBNYHJAUAytEKAuhSCjqh8l2tIkiykc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/user/?search=tho",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"user",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "tho"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[User] Get a user",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTZlYTQwMGZiZTIyNzQxMjJkZTQiLCJleHAiOjE1NTgyMjgzODEsImlhdCI6MTU1ODE0MTk4MX0.URGbeQ1HjON4cBNYHJAUAytEKAuhSCjqh8l2tIkiykc"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/user/5cdee6ea400fbe2274122de4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"user",
+						"5cdee6ea400fbe2274122de4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[User] Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTZlYTQwMGZiZTIyNzQxMjJkZTQiLCJleHAiOjE1NTgyMjgzODEsImlhdCI6MTU1ODE0MTk4MX0.URGbeQ1HjON4cBNYHJAUAytEKAuhSCjqh8l2tIkiykc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"user1\",\n\t\"password\": \"123456\",\n\t\"email\": \"user1@gmai.com\",\n\t\"fullname\": \"Duc Tho Tran\",\n\t\"phone\": \"0947857301\",\n\t\"role\": 2\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/user/?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"user",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[User] Edit",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTZlYTQwMGZiZTIyNzQxMjJkZTQiLCJleHAiOjE1NTgyMjgzODEsImlhdCI6MTU1ODE0MTk4MX0.URGbeQ1HjON4cBNYHJAUAytEKAuhSCjqh8l2tIkiykc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"user1\",\n\t\"password\": \"123456\",\n\t\"email\": \"user1@gmai.com\",\n\t\"fullname\": \"Duc Tho Tran\",\n\t\"phone\": \"0947857301\",\n\t\"role\": 2\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/user/5cdf6da03e2350232cd86584",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"user",
+						"5cdf6da03e2350232cd86584"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[User] Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTZlYTQwMGZiZTIyNzQxMjJkZTQiLCJleHAiOjE1NTgyMjgzODEsImlhdCI6MTU1ODE0MTk4MX0.URGbeQ1HjON4cBNYHJAUAytEKAuhSCjqh8l2tIkiykc"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/user/5cdf6da03e2350232cd86584",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"user",
+						"5cdf6da03e2350232cd86584"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
