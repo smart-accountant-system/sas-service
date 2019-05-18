@@ -6,7 +6,7 @@ const devConfig = {
 const prodConfig = {
   // MONGO_URL: 'mongodb://thienhaco:22196c97c6110f2c04525395ca8394a7@localhost:27017/SAS-service',
   MONGO_URL: 'mongodb://nhatquangsin:Admin!123@ds159036.mlab.com:59036/sasdb',
-  JWT_SECRET: '',
+  JWT_SECRET: 'sai-co-pat',
 };
 
 const defaultConfig = {
