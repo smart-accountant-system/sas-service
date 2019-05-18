@@ -12,7 +12,7 @@ routes.get('/:id', authJwt, getUser);
 
 routes.post('/login', validate(UserValidation.login), authLocal, authUser);
 
-routes.post('/', createUser);
+routes.post('/', authJwt, validate(UserValidation.createUser), createUser);
 routes.patch('/:id', authJwt, OwnOrAdmin, validate(UserValidation.editProfile), updateUser);
 routes.delete('/:id', authJwt, roleAdminManager, deleteUser);
 
