@@ -1,0 +1,9 @@
+{
+    "extends": [
+      "equimper"
+    ],
+    "rules": {
+      "no-console": "off"
+    }
+  }
+  
