@@ -7,7 +7,7 @@ export const getUserList = async (req, res) => {
   const search = req.query.search;
 
   try {
-    const queries = (!search) ? { isRemoved: false } : { '$text': { '$search': search }, isRemoved: false };
+    const queries = (!search) ? { isRemoved: false } : { $text: { $search: search }, isRemoved: false };
     const users = await User.list({ search, queries })
       .skip(skip)
       .limit(limit)
@@ -36,13 +36,13 @@ export const authUser = async (req, res, next) => {
   } catch (error) {
     return res.status(HTTPStatus.BAD_REQUEST).json(error.message);
   }
-}
+};
 
 export const createUser = async (req, res) => {
   try {
-    if (req.user.role < req.body.role) {
-      return res.sendStatus(HTTPStatus.FORBIDDEN);
-    }
+    // if (req.user.role < req.body.role) {
+    //   return res.sendStatus(HTTPStatus.FORBIDDEN);
+    // }
     const user = await User.create({ ...req.body, createdBy: req.user._id });
     return res.status(HTTPStatus.CREATED).json(user.toJSON());
   } catch (error) {
@@ -65,7 +65,6 @@ export const updateUser = async (req, res) => {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
   }
 };
-
 
 export const deleteUser = async (req, res) => {
   try {
