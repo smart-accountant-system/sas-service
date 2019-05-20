@@ -10,6 +10,7 @@ export default {
       email: Joi.string().max(120),
       phone: Joi.string().max(10).required(),
       avatar: Joi.string(),
+      company: Joi.string().required(),
     },
     options: {
       allowUnknownBody: false,

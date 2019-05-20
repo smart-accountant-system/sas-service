@@ -1,5 +1,6 @@
 import HTTPStatus from 'http-status';
 import User from './user.model';
+import constants from '../../config/constants';
 
 export const getUserList = async (req, res) => {
   const limit = parseInt(req.query.limit, 10) || 50;
@@ -42,6 +43,9 @@ export const createUser = async (req, res) => {
   try {
     if (req.user.role < req.body.role) {
       return res.sendStatus(HTTPStatus.FORBIDDEN);
+    }
+    if (req.user.role != constants.ROLE.SYSTEM_ADMIN && req.user.company != req.body.company) {
+      return res.sendStatus(HTTPStatus.BAD_REQUEST);
     }
     const user = await User.create({ ...req.body, createdBy: req.user._id });
     return res.status(HTTPStatus.CREATED).json(user.toJSON());
