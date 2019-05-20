@@ -20,3 +20,10 @@ export function roleAdmin(req, res, next) {
   }
   return res.sendStatus(HTTPStatus.FORBIDDEN);
 }
+
+export function roleEmployee(req, res, next) {
+  if (req.user.role === constants.ROLE.EMPLOYEE) {
+    return next();
+  }
+  return res.sendStatus(HTTPStatus.FORBIDDEN);
+}
