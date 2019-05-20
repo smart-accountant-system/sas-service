@@ -24,11 +24,11 @@ const UserSchema = new Schema({
     maxlength: [80, 'Fullname must equal or shorter than 80'],
   },
   role: {
-    type: Number, // 1000: admin, 1: kế toán, 2: quản lý
+    type: Number, // 0: employee, 1: kế toán, 2: quản lý, 1000: admin
     required: true,
     validate: {
       validator(v) {
-        return v == 1 || v == 2 || v == 1000;
+        return v == constants.ROLE.ACCOUNTANT || v == constants.ROLE.MANAGER || v == constants.ROLE.SYSTEM_ADMIN;
       },
       message: props => `${props.value} is not a valid role number`,
     },
@@ -56,12 +56,12 @@ const UserSchema = new Schema({
   company: {
     type: Schema.Types.ObjectId,
     ref: 'Company',
-    // required: true,
+    required: true,
   },
   createdBy: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    // required: true,
+    required: true,
   },
 }, {
     timestamps: true,
@@ -108,6 +108,7 @@ UserSchema.methods = {
       phone: this.phone,
       company: this.company,
       createdBy: this.createdBy,
+      createdAt: this.createdAt,
     };
   },
 
