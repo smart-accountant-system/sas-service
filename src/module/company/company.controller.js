@@ -21,15 +21,15 @@ export async function getCompanyList(req, res) {
 
 export async function getDetailCompany(req, res) {
   try {
+    const queries = (req.user.role == constants.ROLE.SYSTEM_ADMIN) ?
+      { _id: req.params.id, isRemoved: false } :
+      { _id: { $eq: req.params.id, $eq: req.user.company }, isRemoved: false };
+
     const company = await Company
-      .findOne({ _id: req.params.id, isRemoved: false })
+      .findOne(queries)
       .populate('createdBy', '_id fullname');
     if (!company) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
-    }
-
-    if (req.user.role !== constants.ROLE.SYSTEM_ADMIN && req.user.company != company._id) {
-      return res.sendStatus(HTTPStatus.FORBIDDEN);
     }
 
     return res.status(HTTPStatus.OK).json(company);

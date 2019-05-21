@@ -1,6 +1,5 @@
 import HTTPStatus from 'http-status';
 import Invoice from './invoice.model';
-import constants from '../../config/constants';
 
 // @Param handler:
 //   - startDate: YYYY-MM-DD
@@ -32,14 +31,10 @@ export async function getInvoiceList(req, res) {
 export async function getDetailInvoice(req, res) {
   try {
     const invoice = await Invoice
-      .findOne({ _id: req.params.id, isRemoved: false })
+      .findOne({ _id: req.params.id, isRemoved: false, company: req.user.company })
       .populate('createdBy', 'fullname');
     if (!invoice) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
-    }
-
-    if (req.user.role !== constants.ROLE.SYSTEM_ADMIN && !req.user.company.equals( invoice.company)) {
-      return res.sendStatus(HTTPStatus.FORBIDDEN);
     }
 
     return res.status(HTTPStatus.OK).json(invoice);

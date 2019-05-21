@@ -47,11 +47,6 @@ InvoiceSchema.statics = {
       createdBy: user._id,
     });
   },
-  list({ search, queries } = {}) {
-    return search ?
-    this.find(queries, { score: { $meta: 'textScore' } }).sort({ score: { $meta: 'textScore' } }) :
-    this.find(queries).sort({ name: 1 });
-  },
 };
 
 InvoiceSchema.methods = {
