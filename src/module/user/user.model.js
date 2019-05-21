@@ -28,7 +28,7 @@ const UserSchema = new Schema({
     required: true,
     validate: {
       validator(v) {
-        return v == constants.ROLE.ACCOUNTANT || v == constants.ROLE.MANAGER || v == constants.ROLE.SYSTEM_ADMIN;
+        return v == constants.ROLE.ACCOUNTANT || v == constants.ROLE.MANAGER || v == constants.ROLE.SYSTEM_ADMIN || v == constants.ROLE.EMPLOYEE;
       },
       message: props => `${props.value} is not a valid role number`,
     },
