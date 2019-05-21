@@ -27,3 +27,24 @@ export function roleEmployee(req, res, next) {
   }
   return res.sendStatus(HTTPStatus.FORBIDDEN);
 }
+
+export function roleManager(req, res, next) {
+  if (req.user.role === constants.ROLE.MANAGER) {
+    return next();
+  }
+  return res.sendStatus(HTTPStatus.FORBIDDEN);
+}
+
+export function roleManagerEmployee(req, res, next) {
+  if (req.user.role === constants.ROLE.MANAGER || req.user.role === constants.ROLE.EMPLOYEE) {
+    return next();
+  }
+  return res.sendStatus(HTTPStatus.FORBIDDEN);
+}
+
+export function notAdmin(req, res, next) {
+  if (req.user.role !== constants.ROLE.SYSTEM_ADMIN) {
+    return next();
+  }
+  return res.sendStatus(HTTPStatus.FORBIDDEN);
+}
