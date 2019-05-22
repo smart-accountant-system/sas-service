@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": \"ducthotran2010\",\n\t\"password\": \"123456\"\n}"
+					"raw": "{\n\t\"username\": \"employee\",\n\t\"password\": \"123456\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:7777/user/login",
@@ -117,13 +117,13 @@
 					},
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTZlYTQwMGZiZTIyNzQxMjJkZTQiLCJleHAiOjE1NTgyMjgzODEsImlhdCI6MTU1ODE0MTk4MX0.URGbeQ1HjON4cBNYHJAUAytEKAuhSCjqh8l2tIkiykc",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg1MDM0MTMsImlhdCI6MTU1ODQxNzAxM30.OYc2itmT0sHJU7nDIkz8V7yEGOWiWXqyjNE_6PEgFas",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": \"user1\",\n\t\"password\": \"123456\",\n\t\"email\": \"user1@gmai.com\",\n\t\"fullname\": \"Duc Tho Tran\",\n\t\"phone\": \"0947857301\",\n\t\"role\": 2\n}"
+					"raw": "{\n\t\"username\": \"employee\",\n\t\"password\": \"123456\",\n\t\"email\": \"employee@gmai.com\",\n\t\"fullname\": \"Employeeeee\",\n\t\"phone\": \"0947857301\",\n\t\"role\": 0,\n\t\"company\": \"5ce298743e2396169c442b93\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:7777/user/?",
@@ -210,6 +210,510 @@
 					"path": [
 						"user",
 						"5cdf6da03e2350232cd86584"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Company] Get list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg0Mzk4NDAsImlhdCI6MTU1ODM1MzQ0MH0.Ex72Sv-Rmw7H9U6QctL3nrSVYMeqmd9FlTsS4zw8EJU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/company/?search=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"company",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Company] Get a company",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg1MTg2MjQsImlhdCI6MTU1ODQzMjIyNH0.q_ck9xXwq-WJYbgzUateLjo7kYnrtLxVoUdWPTtoovI"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/company/5ce298743e2396169c442b93",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"company",
+						"5ce298743e2396169c442b93"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Company] Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg0Mzk4NDAsImlhdCI6MTU1ODM1MzQ0MH0.Ex72Sv-Rmw7H9U6QctL3nrSVYMeqmd9FlTsS4zw8EJU"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Công ty trách nhiệm có hạn BBB\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/company/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"company",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Company] Edit",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg0Mzk4NDAsImlhdCI6MTU1ODM1MzQ0MH0.Ex72Sv-Rmw7H9U6QctL3nrSVYMeqmd9FlTsS4zw8EJU"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Công ty trách nhiệm có hạn CCC\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/company/5ce2983b3e2396169c442b91",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"company",
+						"5ce2983b3e2396169c442b91"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Company] Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg0Mzk4NDAsImlhdCI6MTU1ODM1MzQ0MH0.Ex72Sv-Rmw7H9U6QctL3nrSVYMeqmd9FlTsS4zw8EJU"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Công ty trách nhiệm có hạn CCC\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/company/5ce2983b3e2396169c442b91",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"company",
+						"5ce2983b3e2396169c442b91"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Invoice] Get list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg1MzgwMTUsImlhdCI6MTU1ODQ1MTYxNX0.K_Sh8geh6z6ZEYkEfwLklumcr1QW_IrkKzU8jbVCR1M",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/invoice/?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"invoice",
+						""
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2019-05-21",
+							"disabled": true
+						},
+						{
+							"key": "endDate",
+							"value": "2019-05-21",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Invoice] Get one",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MDM4MTQsImlhdCI6MTU1ODQxNzQxNH0.lE-WfUVwnKLceKhE6lVcgdk_s9EKBIIYBeJEw5Jl4Vo"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/invoice/5ce3a767fa0b4c08949ff73c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"invoice",
+						"5ce3a767fa0b4c08949ff73c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Invoice] Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MDM4MTQsImlhdCI6MTU1ODQxNzQxNH0.lE-WfUVwnKLceKhE6lVcgdk_s9EKBIIYBeJEw5Jl4Vo"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"detail\": [\n\t\t{\n\t\t\t\"product\": \"Sua ong Tho\",\n\t\t\t\"quantity\": 10,\n\t\t\t\"unitPrice\": 10\n\t\t}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/invoice/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"invoice",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Invoice] Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MDM4MTQsImlhdCI6MTU1ODQxNzQxNH0.lE-WfUVwnKLceKhE6lVcgdk_s9EKBIIYBeJEw5Jl4Vo"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"detail\": [\n\t\t{\n\t\t\t\"product\": \"Sua ong Tho\",\n\t\t\t\"quantity\": 10,\n\t\t\t\"unitPrice\": 10\n\t\t}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/invoice/5ce3a767fa0b4c08949ff73c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"invoice",
+						"5ce3a767fa0b4c08949ff73c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Customer] Get list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MzgwNTcsImlhdCI6MTU1ODQ1MTY1N30.XeMtq84J29NSJ4Yr6DGbv4fwg7R_9kpdCwAz4vJcFpo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/customer/?search=TIEN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"customer",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "TIEN"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Customer] Get one",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MzgwNTcsImlhdCI6MTU1ODQ1MTY1N30.XeMtq84J29NSJ4Yr6DGbv4fwg7R_9kpdCwAz4vJcFpo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/customer/5ce41708695f622278437e54",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"customer",
+						"5ce41708695f622278437e54"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Customer] Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MzgyNjgsImlhdCI6MTU1ODQ1MTg2OH0.ioJP8LXpIvScUIY8ma1CpJENbKouWG7VUy5oHmT9Ssw"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"VAN TIEN SINH\",\n\t\"phone\": \"0123456789\",\n\t\"address\": \"HCM\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/customer/?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"customer",
+						""
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2019-05-21",
+							"disabled": true
+						},
+						{
+							"key": "endDate",
+							"value": "2019-05-21",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Customer] Edit",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MzgyNjgsImlhdCI6MTU1ODQ1MTg2OH0.ioJP8LXpIvScUIY8ma1CpJENbKouWG7VUy5oHmT9Ssw"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"VAN TIEN SINH\",\n\t\"phone\": \"0123456789\",\n\t\"address\": \"HCM\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/customer/5ce41708695f622278437e54?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"customer",
+						"5ce41708695f622278437e54"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2019-05-21",
+							"disabled": true
+						},
+						{
+							"key": "endDate",
+							"value": "2019-05-21",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Customer] Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MzgyNjgsImlhdCI6MTU1ODQ1MTg2OH0.ioJP8LXpIvScUIY8ma1CpJENbKouWG7VUy5oHmT9Ssw"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"VAN TIEN SINH\",\n\t\"phone\": \"0123456789\",\n\t\"address\": \"HCM\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/customer/5ce41708695f622278437e54?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"customer",
+						"5ce41708695f622278437e54"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2019-05-21",
+							"disabled": true
+						},
+						{
+							"key": "endDate",
+							"value": "2019-05-21",
+							"disabled": true
+						}
 					]
 				}
 			},
