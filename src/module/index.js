@@ -7,11 +7,11 @@ import categoryRoutes from './payment-category/category.route';
 import transactionRoutes from './transaction/transaction.route';
 
 export default app => {
-  app.use('/user', userRoutes);
-  app.use('/company', companyRoutes);
-  app.use('/invoice', invoiceRoutes);
-  app.use('/customer', customerRoutes);
-  app.use('/payment', paymentRoutes);
-  app.use('/category', categoryRoutes);
-  app.use('/transaction', transactionRoutes);
+  app.use('/users', userRoutes);
+  app.use('/companies', companyRoutes);
+  app.use('/invoices', invoiceRoutes);
+  app.use('/customers', customerRoutes);
+  app.use('/payments', paymentRoutes);
+  app.use('/categories', categoryRoutes);
+  app.use('/transactions', transactionRoutes);
 };
