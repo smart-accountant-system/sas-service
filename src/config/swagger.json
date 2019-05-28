@@ -5,18 +5,26 @@
     "version": "1.0.0",
     "title": "SAS' Swagger"
   },
-  "host": "smart-accountant-system.herokuapp.com",
+  "host": "localhost:7777",
   "basePath": "/",
-  "schemes": ["https"],
+  "schemes": [
+    "https",
+    "http"
+  ],
   "paths": {
     "/admins": {
       "get": {
-        "tags": ["admin"],
-        "summary": "Get a list of administrators",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Get a list of admins",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -65,12 +73,17 @@
         }
       },
       "post": {
-        "tags": ["admin"],
-        "summary": "Add new administrator",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Add a new admin",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -80,7 +93,11 @@
             "name": "admin",
             "schema": {
               "type": "object",
-              "required": ["username", "password", "fullname"],
+              "required": [
+                "username",
+                "password",
+                "fullname"
+              ],
               "properties": {
                 "username": {
                   "type": "string"
@@ -119,11 +136,17 @@
     },
     "/admins/login": {
       "post": {
-        "tags": ["admin"],
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
+        "tags": [
+          "admin"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Login",
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -133,7 +156,10 @@
             "name": "admin",
             "schema": {
               "type": "object",
-              "required": ["username", "password"],
+              "required": [
+                "username",
+                "password"
+              ],
               "properties": {
                 "username": {
                   "type": "string"
@@ -157,11 +183,17 @@
     },
     "/admins/{id}": {
       "patch": {
-        "tags": ["admin"],
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
+        "tags": [
+          "admin"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Update info of an admin",
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -210,11 +242,477 @@
         }
       },
       "delete": {
-        "tags": ["admin"],
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
+        "tags": [
+          "admin"
+        ],
+        "summary": "Delete an admin",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
           {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/companies": {
+      "get": {
+        "tags": [
+          "company"
+        ],
+        "summary": "Get a list of companies",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "in": "header",
+          "name": "token",
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "admins": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "total": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Check your token"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "company"
+        ],
+        "summary": "Add a new company",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "company",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Check your token"
+          },
+          "404": {
+            "description": "Bad Request / Unknown variable"
+          }
+        }
+      }
+    },
+    "/companies/{id}": {
+      "patch": {
+        "tags": [
+          "company"
+        ],
+        "summary": "Update info of a company",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "company",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "company"
+        ],
+        "summary": "Delete a company by id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/employees": {
+      "get": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Get a list of employees",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "type": "number",
+            "description": "Search by fullname of employee"
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "admins": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "total": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Check your token"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Add a new employee",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "admin",
+            "schema": {
+              "type": "object",
+              "required": [
+                "username",
+                "password",
+                "fullname"
+              ],
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "fullname": {
+                  "type": "string"
+                },
+                "avatar": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Check your token"
+          },
+          "404": {
+            "description": "Bad Request / Unknown variable"
+          }
+        }
+      }
+    },
+    "/employees/login": {
+      "post": {
+        "tags": [
+          "employee"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Login",
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "admin",
+            "schema": {
+              "type": "object",
+              "required": [
+                "username",
+                "password"
+              ],
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/employees/{id}": {
+      "get": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Get info of an employee",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "employee"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Update info of an employee",
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "admin",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "fullname": {
+                  "type": "string"
+                },
+                "avatar": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Delete an employee",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
