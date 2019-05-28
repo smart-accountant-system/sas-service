@@ -13,7 +13,7 @@ routesConfig(app);
 app.listen(constants.PORT, () => console.log(`
     Service is up on port ${constants.PORT} 🐳
     ---
-    Swagger is running on host/api-docs
+    Swagger is running on host root
     ---`));
 
 process.on('SIGINT', () => { console.log('Bye bye!'); process.exit(); });
