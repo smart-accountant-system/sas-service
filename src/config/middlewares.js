@@ -8,7 +8,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerDev from './swagger_dev.json';
 import swaggerDocument from './swagger.json';
 
-const isProd = process.env.NODE_ENV === 'prod';
+const isProd = process.env.NODE_ENV != 'dev';
 
 export default app => {
   if (isProd) {
