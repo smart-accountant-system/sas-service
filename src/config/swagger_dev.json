@@ -5,9 +5,9 @@
     "version": "1.0.0",
     "title": "SAS' Swagger"
   },
-  "host": "smart-accountant-system.herokuapp.com",
+  "host": "localhost:7777",
   "basePath": "/",
-  "schemes": ["https"],
+  "schemes": ["http"],
   "paths": {
     "/admins": {
       "get": {
