@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import HTTPStatus from 'http-status';
 import Employee from './employee.model';
 
@@ -9,7 +10,7 @@ export const getEmployeeList = async (req, res) => {
   try {
     const company = req.user.company || req.query.company;
     const queries = (search && company) ? { $text: { $search: search }, isRemoved: false, company } :
-      (search) ? { $text: { $search: search }, isRemoved: false, } :
+      (search) ? { $text: { $search: search }, isRemoved: false } :
         (company) ? { isRemoved: false, company } :
           { isRemoved: false };
 
