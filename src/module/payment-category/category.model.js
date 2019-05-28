@@ -18,21 +18,19 @@ const PaymentCategorySchema = new Schema({
     type: Boolean,
     default: false,
   },
-}, {
-  timestamps: true,
 });
 
 PaymentCategorySchema.statics = {
   createPaymentCategory(args, company) {
     return this.create({
       ...args,
-      company: company,
+      company,
     });
   },
   list({ search, queries } = {}) {
     return search ?
-    this.find(queries, { score: { $meta: 'textScore' } }).sort({ score: { $meta: 'textScore' } }) :
-    this.find(queries).sort({ name: 1 });
+      this.find(queries, { score: { $meta: 'textScore' } }).sort({ score: { $meta: 'textScore' } }) :
+      this.find(queries).sort({ name: 1 });
   },
 };
 

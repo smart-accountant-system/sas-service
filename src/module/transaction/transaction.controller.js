@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import HTTPStatus from 'http-status';
 import Transaction from './transaction.model';
 
@@ -18,7 +19,7 @@ export async function getTransactionList(req, res) {
     const queries = (startDate && endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate, $lt: endDate } } :
       (startDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate } } :
         (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
-        { isRemoved: false, company: req.user.company };
+          { isRemoved: false, company: req.user.company };
 
     const transactions = await Transaction.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 });
     const total = await Transaction.count(queries);

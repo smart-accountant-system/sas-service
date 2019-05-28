@@ -63,8 +63,8 @@ const UserSchema = new Schema({
     required: true,
   },
 }, {
-    timestamps: true,
-  });
+  timestamps: true,
+});
 
 UserSchema.pre('save', function (next) {
   if (this.isModified('password')) {
@@ -124,11 +124,9 @@ UserSchema.index({ fullname: 'text' });
 UserSchema.statics = {
   list({ search, queries } = {}) {
     return search ?
-    this.find(queries, { score: { $meta: 'textScore' } }).sort({ score: { $meta: 'textScore' } }) :
-    this.find(queries).sort({ fullname: 1 });
+      this.find(queries, { score: { $meta: 'textScore' } }).sort({ score: { $meta: 'textScore' } }) :
+      this.find(queries).sort({ fullname: 1 });
   },
 };
-
-
 
 export default mongoose.model('User', UserSchema);

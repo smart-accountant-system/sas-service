@@ -1,9 +1,7 @@
 {
-    "extends": [
-      "equimper"
-    ],
-    "rules": {
-      "no-console": "off"
-    }
+  "extends": ["equimper"],
+  "rules": {
+    "no-console": "off",
+    "eqeqeq": "off"
   }
-  
+}

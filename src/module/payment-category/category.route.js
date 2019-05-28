@@ -3,7 +3,7 @@ import validate from 'express-validation';
 import * as categoryController from './category.controller';
 import categoryValidation from './category.validation';
 import { authJwt } from '../../service/passport';
-import { roleEmployee, notAdmin } from '../user/user.role';
+import { notAdmin } from '../user/user.role';
 
 const routes = new Router();
 

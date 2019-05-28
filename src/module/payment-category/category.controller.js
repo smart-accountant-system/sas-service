@@ -1,6 +1,5 @@
 import HTTPStatus from 'http-status';
 import Category from './category.model';
-import constants from '../../config/constants';
 
 export async function getCategoryList(req, res) {
   const limit = parseInt(req.query.limit, 0) || 50;
