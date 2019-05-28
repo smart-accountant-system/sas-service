@@ -7,6 +7,12 @@ const CompanySchema = new Schema({
     required: true,
     unique: [true, 'Company name must be unique'],
   },
+  email: {
+    type: String,
+    trim: true,
+    unique: true,
+    maxlength: [120, 'Email must equal or shorter than 120'],
+  },
   isRemoved: {
     type: Boolean,
     default: false,
@@ -39,6 +45,7 @@ CompanySchema.methods = {
     return {
       _id: this._id,
       name: this.name,
+      email: this.email,
       createdBy: this.createdBy,
       createdAt: this.createdAt,
     };
