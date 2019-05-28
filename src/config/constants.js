@@ -30,4 +30,8 @@ export default {
     ACCOUNTANT: 1,
     EMPLOYEE: 0,
   },
+  INVOICE: {
+    PURCHASED: 0,
+    SELLED: 1,
+  },
 };
