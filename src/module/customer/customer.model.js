@@ -16,6 +16,7 @@ const CustomerSchema = new Schema({
     type: String,
     required: true,
   },
+
   isRemoved: {
     type: Boolean,
     default: false,
@@ -25,20 +26,12 @@ const CustomerSchema = new Schema({
     ref: 'Company',
     required: true,
   },
-  createdBy: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
-}, {
-  timestamps: true,
 });
 
 CustomerSchema.statics = {
   createCustomer(args, user) {
     return this.create({
       ...args,
-      createdBy: user._id,
       company: user.company,
     });
   },
@@ -56,9 +49,6 @@ CustomerSchema.methods = {
       name: this.name,
       phone: this.phone,
       address: this.addres,
-      company: this.company,
-      createdBy: this.createdBy,
-      createdAt: this.createdAt,
     };
   },
 };

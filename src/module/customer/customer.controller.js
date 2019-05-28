@@ -21,8 +21,7 @@ export async function getCustomerList(req, res) {
 export async function getDetailCustomer(req, res) {
   try {
     const customer = await Customer
-      .findOne({ _id: req.params.id, isRemoved: false, company: req.user.company })
-      .populate('createdBy company');
+      .findOne({ _id: req.params.id, isRemoved: false, company: req.user.company });
     if (!customer) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
     }
