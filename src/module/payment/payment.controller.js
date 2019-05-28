@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import HTTPStatus from 'http-status';
 import Payment from './payment.model';
 
@@ -18,7 +19,7 @@ export async function getPaymentList(req, res) {
     const queries = (startDate && endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate, $lt: endDate } } :
       (startDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate } } :
         (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
-        { isRemoved: false, company: req.user.company };
+          { isRemoved: false, company: req.user.company };
 
     const payments = await Payment.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 });
     const total = await Payment.count(queries);

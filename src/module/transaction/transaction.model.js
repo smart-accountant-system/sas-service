@@ -19,7 +19,7 @@ const TransactionSchema = new Schema({
     cost: {
       type: Number,
       required: true,
-    }
+    },
   },
   secondAccount: {
     _id: {
@@ -30,7 +30,7 @@ const TransactionSchema = new Schema({
     cost: {
       type: Number,
       required: true,
-    }
+    },
   },
   company: {
     type: Schema.Types.ObjectId,

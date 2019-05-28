@@ -1,6 +1,5 @@
 import HTTPStatus from 'http-status';
 import Company from './company.model';
-import constants from '../../config/constants';
 
 export async function getCompanyList(req, res) {
   const limit = parseInt(req.query.limit, 0) || 50;
@@ -21,12 +20,12 @@ export async function getCompanyList(req, res) {
 
 export async function getDetailCompany(req, res) {
   try {
-    const queries = (req.user.role == constants.ROLE.SYSTEM_ADMIN) ?
-      { _id: req.params.id, isRemoved: false } :
-      { _id: { $eq: req.params.id, $eq: req.user.company }, isRemoved: false };
+    if (req.params.id != req.user.company) {
+      return res.sendStatus(HTTPStatus.FORBIDDEN);
+    }
 
     const company = await Company
-      .findOne(queries)
+      .findOne({ _id: req.params.id, isRemoved: false })
       .populate('createdBy', '_id fullname');
     if (!company) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);

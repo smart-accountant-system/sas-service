@@ -29,7 +29,7 @@ const CustomerSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
-  }
+  },
 }, {
   timestamps: true,
 });
@@ -44,8 +44,8 @@ CustomerSchema.statics = {
   },
   list({ search, queries } = {}) {
     return search ?
-    this.find(queries, { score: { $meta: 'textScore' } }).sort({ score: { $meta: 'textScore' } }) :
-    this.find(queries).sort({ name: 1 });
+      this.find(queries, { score: { $meta: 'textScore' } }).sort({ score: { $meta: 'textScore' } }) :
+      this.find(queries).sort({ name: 1 });
   },
 };
 

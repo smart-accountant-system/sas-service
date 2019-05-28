@@ -1,5 +1,4 @@
 import passport from 'passport';
-import HTTPStatus from 'http-status';
 import LocalStrategy from 'passport-local';
 import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
 import constants from '../config/constants';

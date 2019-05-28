@@ -6,7 +6,8 @@ export async function getCustomerList(req, res) {
   const skip = parseInt(req.query.skip, 0) || 0;
   const search = req.query.search;
   try {
-    const queries = (!search) ? { isRemoved: false, company: req.user.company } : { $text: { $search: search }, isRemoved: false, company: req.user.company };
+    const queries = (!search) ? { isRemoved: false, company: req.user.company } : 
+      { $text: { $search: search }, isRemoved: false, company: req.user.company };
     const customers = await Customer.list({ search, queries })
       .skip(skip)
       .limit(limit);
