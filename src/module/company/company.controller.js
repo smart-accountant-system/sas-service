@@ -20,13 +20,13 @@ export async function getCompanyList(req, res) {
 
 export async function getDetailCompany(req, res) {
   try {
-    if (req.params.id != req.user.company) {
+    if (req.user.role && req.params.id != req.user.company) {
       return res.sendStatus(HTTPStatus.FORBIDDEN);
     }
 
     const company = await Company
       .findOne({ _id: req.params.id, isRemoved: false })
-      .populate('createdBy', '_id fullname');
+      .populate('createdBy', '-_id username fullname');
     if (!company) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
     }

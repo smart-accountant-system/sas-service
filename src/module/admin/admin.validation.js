@@ -1,16 +1,14 @@
 import Joi from 'joi';
 
 export default {
-  createUser: {
+  createAdmin: {
     body: {
       username: Joi.string().min(3).max(120).required(),
       password: Joi.string().min(6).max(120).required(),
       fullname: Joi.string().min(3).max(80).required(),
-      role: Joi.number().required(),
-      email: Joi.string().max(120),
-      phone: Joi.string().max(10).required(),
       avatar: Joi.string(),
-      company: Joi.string(),
+      phone: Joi.string().min(10).max(10).required(),
+      email: Joi.string().max(120),
     },
     options: {
       allowUnknownBody: false,
@@ -27,10 +25,9 @@ export default {
       username: Joi.string().min(3).max(120),
       password: Joi.string().min(6).max(120),
       fullname: Joi.string().min(3).max(80),
-      role: Joi.number(),
-      email: Joi.string().max(120),
-      phone: Joi.string().max(10),
       avatar: Joi.string(),
+      phone: Joi.string().min(10).max(10),
+      email: Joi.string().max(120),
     },
     options: {
       allowUnknownBody: false,

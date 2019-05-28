@@ -2,6 +2,7 @@
   "extends": ["equimper"],
   "rules": {
     "no-console": "off",
-    "eqeqeq": "off"
+    "eqeqeq": "off",
+    "no-multiple-empty-lines": ["error", { "max": 3 }]
   }
 }

@@ -3,7 +3,7 @@ import validate from 'express-validation';
 import * as companyController from './company.controller';
 import companyValidation from './company.validation';
 import { authJwt } from '../../service/passport';
-import { roleAdmin } from '../user/user.role';
+import { roleAdmin } from '../../service/role';
 
 const routes = new Router();
 

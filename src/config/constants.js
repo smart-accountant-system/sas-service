@@ -26,7 +26,6 @@ export default {
   ...envConfig(process.env.NODE_ENV),
   AUTH_TOKEN_LIFESPAN: 1,
   ROLE: {
-    SYSTEM_ADMIN: 1000,
     MANAGER: 2,
     ACCOUNTANT: 1,
     EMPLOYEE: 0,
