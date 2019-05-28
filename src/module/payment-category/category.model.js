@@ -9,6 +9,7 @@ const PaymentCategorySchema = new Schema({
     type: String,
     required: true,
   },
+
   company: {
     type: Schema.Types.ObjectId,
     ref: 'Company',
@@ -40,7 +41,6 @@ PaymentCategorySchema.methods = {
       _id: this._id,
       name: this.name,
       detail: this.detail,
-      company: this.company,
     };
   },
 };

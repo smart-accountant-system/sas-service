@@ -6,7 +6,8 @@ export async function getCategoryList(req, res) {
   const skip = parseInt(req.query.skip, 0) || 0;
   const search = req.query.search;
   try {
-    const queries = (!search) ? { isRemoved: false } : { $text: { $search: search }, isRemoved: false };
+    const queries = (!search) ? { isRemoved: false, company: req.user.company } : 
+      { $text: { $search: search }, isRemoved: false, company: req.user.company };
     const categories = await Category.list({ search, queries })
       .skip(skip)
       .limit(limit);
@@ -19,7 +20,7 @@ export async function getCategoryList(req, res) {
 
 export async function getDetailCategory(req, res) {
   try {
-    const category = await Category.findOne({ _id: req.params.id, isRemoved: false });
+    const category = await Category.findOne({ _id: req.params.id, isRemoved: false, company: req.user.company });
     if (!category) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
     }
