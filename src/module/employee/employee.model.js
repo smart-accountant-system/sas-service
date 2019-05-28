@@ -3,7 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 import { compareSync, hashSync } from 'bcrypt-nodejs';
 import constants from '../../config/constants';
 
-const UserSchema = new Schema({
+const EmployeeSchema = new Schema({
   username: {
     type: String,
     required: true,
@@ -24,7 +24,7 @@ const UserSchema = new Schema({
     maxlength: [80, 'Fullname must equal or shorter than 80'],
   },
   role: {
-    type: Number, // 0: employee, 1: kế toán, 2: quản lý, 1000: admin
+    type: Number, // 0: employee, 1: kế toán, 2: quản lý
     required: true,
     validate: {
       validator(v) {
@@ -36,10 +36,6 @@ const UserSchema = new Schema({
   avatar: {
     trim: true,
     type: String,
-  },
-  isRemoved: {
-    type: Boolean,
-    default: false,
   },
   phone: {
     type: String,
@@ -57,23 +53,22 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Company',
   },
-  createdBy: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
+  isRemoved: {
+    type: Boolean,
+    default: false,
   },
 }, {
   timestamps: true,
 });
 
-UserSchema.pre('save', function (next) {
+EmployeeSchema.pre('save', function (next) {
   if (this.isModified('password')) {
     this.password = this.hashPassword(this.password);
   }
   return next();
 });
 
-UserSchema.methods = {
+EmployeeSchema.methods = {
   hashPassword(password) {
     return hashSync(password);
   },
@@ -102,12 +97,10 @@ UserSchema.methods = {
       username: this.username,
       fullname: this.fullname,
       role: this.role,
-      email: this.email,
       avatar: this.avatar,
       phone: this.phone,
+      email: this.email,
       company: this.company,
-      createdBy: this.createdBy,
-      createdAt: this.createdAt,
     };
   },
 
@@ -119,9 +112,9 @@ UserSchema.methods = {
   },
 };
 
-UserSchema.index({ fullname: 'text' });
+EmployeeSchema.index({ fullname: 'text' });
 
-UserSchema.statics = {
+EmployeeSchema.statics = {
   list({ search, queries } = {}) {
     return search ?
       this.find(queries, { score: { $meta: 'textScore' } }).sort({ score: { $meta: 'textScore' } }) :
@@ -129,4 +122,4 @@ UserSchema.statics = {
   },
 };
 
-export default mongoose.model('User', UserSchema);
+export default mongoose.model('Employee', EmployeeSchema);

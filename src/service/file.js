@@ -8,8 +8,8 @@ export default multer({
     },
     filename(req, file, done) {
       done(null, 
-        `NEMTHC-${
-          file.originalname.includes('NEMTHC_AVATAR') ? 
+        `SAS-${
+          file.originalname.includes('SAS') ? 
             file.originalname : 
             `${Date.now()}-${file.originalname}`
         }`);
