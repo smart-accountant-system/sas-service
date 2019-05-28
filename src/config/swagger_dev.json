@@ -7,24 +7,16 @@
   },
   "host": "localhost:7777",
   "basePath": "/",
-  "schemes": [
-    "https",
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/admins": {
       "get": {
-        "tags": [
-          "admin"
-        ],
+        "tags": ["admin"],
         "summary": "Get a list of admins",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -73,17 +65,12 @@
         }
       },
       "post": {
-        "tags": [
-          "admin"
-        ],
+        "tags": ["admin"],
         "summary": "Add a new admin",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -93,11 +80,7 @@
             "name": "admin",
             "schema": {
               "type": "object",
-              "required": [
-                "username",
-                "password",
-                "fullname"
-              ],
+              "required": ["username", "password", "fullname"],
               "properties": {
                 "username": {
                   "type": "string"
@@ -136,17 +119,12 @@
     },
     "/admins/login": {
       "post": {
-        "tags": [
-          "admin"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "tags": ["admin"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "summary": "Login",
-        "parameters": [{
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -156,10 +134,7 @@
             "name": "admin",
             "schema": {
               "type": "object",
-              "required": [
-                "username",
-                "password"
-              ],
+              "required": ["username", "password"],
               "properties": {
                 "username": {
                   "type": "string"
@@ -183,17 +158,12 @@
     },
     "/admins/{id}": {
       "patch": {
-        "tags": [
-          "admin"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "tags": ["admin"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "summary": "Update info of an admin",
-        "parameters": [{
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -242,17 +212,12 @@
         }
       },
       "delete": {
-        "tags": [
-          "admin"
-        ],
+        "tags": ["admin"],
         "summary": "Delete an admin",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -276,21 +241,17 @@
     },
     "/companies": {
       "get": {
-        "tags": [
-          "company"
-        ],
+        "tags": ["company"],
         "summary": "Get a list of companies",
-        "consumes": [
-          "application/json"
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          }
         ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
-          "in": "header",
-          "name": "token",
-          "type": "string"
-        }],
         "responses": {
           "200": {
             "schema": {
@@ -318,17 +279,12 @@
         }
       },
       "post": {
-        "tags": [
-          "company"
-        ],
+        "tags": ["company"],
         "summary": "Add a new company",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -338,9 +294,7 @@
             "name": "company",
             "schema": {
               "type": "object",
-              "required": [
-                "name"
-              ],
+              "required": ["name"],
               "properties": {
                 "name": {
                   "type": "string"
@@ -364,17 +318,12 @@
     },
     "/companies/{id}": {
       "patch": {
-        "tags": [
-          "company"
-        ],
+        "tags": ["company"],
         "summary": "Update info of a company",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -408,17 +357,12 @@
         }
       },
       "delete": {
-        "tags": [
-          "company"
-        ],
+        "tags": ["company"],
         "summary": "Delete a company by id",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -442,17 +386,12 @@
     },
     "/employees": {
       "get": {
-        "tags": [
-          "employee"
-        ],
+        "tags": ["employee"],
         "summary": "Get a list of employees",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -501,17 +440,12 @@
         }
       },
       "post": {
-        "tags": [
-          "employee"
-        ],
+        "tags": ["employee"],
         "summary": "Add a new employee",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -521,11 +455,7 @@
             "name": "admin",
             "schema": {
               "type": "object",
-              "required": [
-                "username",
-                "password",
-                "fullname"
-              ],
+              "required": ["username", "password", "fullname"],
               "properties": {
                 "username": {
                   "type": "string"
@@ -564,17 +494,12 @@
     },
     "/employees/login": {
       "post": {
-        "tags": [
-          "employee"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "tags": ["employee"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "summary": "Login",
-        "parameters": [{
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -584,10 +509,7 @@
             "name": "admin",
             "schema": {
               "type": "object",
-              "required": [
-                "username",
-                "password"
-              ],
+              "required": ["username", "password"],
               "properties": {
                 "username": {
                   "type": "string"
@@ -611,17 +533,12 @@
     },
     "/employees/{id}": {
       "get": {
-        "tags": [
-          "employee"
-        ],
+        "tags": ["employee"],
         "summary": "Get info of an employee",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -643,17 +560,12 @@
         }
       },
       "patch": {
-        "tags": [
-          "employee"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "tags": ["employee"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "summary": "Update info of an employee",
-        "parameters": [{
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
@@ -702,17 +614,12 @@
         }
       },
       "delete": {
-        "tags": [
-          "employee"
-        ],
+        "tags": ["employee"],
         "summary": "Delete an employee",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
             "in": "header",
             "name": "token",
             "type": "string"
