@@ -11,18 +11,17 @@ const PaymentSchema = new Schema({
     ref: 'PaymentCategory',
     required: true,
   },
-  cost: {
+  amountMoney: {
     type: Number,
+    required: true,
+  },
+  description: {
+    type: String,
     required: true,
   },
   company: {
     type: Schema.Types.ObjectId,
     ref: 'Company',
-    required: true,
-  },
-  createdBy: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
     required: true,
   },
   isRemoved: {
@@ -38,7 +37,6 @@ PaymentSchema.statics = {
     return this.create({
       ...args,
       company: user.company,
-      createdBy: user._id,
     });
   },
 };
@@ -49,9 +47,8 @@ PaymentSchema.methods = {
       _id: this._id,
       invoice: this.invoice,
       category: this.category,
-      cost: this.cost,
-      company: this.company,
-      createdBy: this.createdBy,
+      amountMoney: this.amountMoney,
+      description: this.description,
       createdAt: this.createdAt,
     };
   },
