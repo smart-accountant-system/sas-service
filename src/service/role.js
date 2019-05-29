@@ -24,8 +24,8 @@ export function roleManager(req, res, next) {
   return res.sendStatus(HTTPStatus.FORBIDDEN);
 }
 
-export function roleEmployee(req, res, next) {
-  if (req.user.role == constants.ROLE.EMPLOYEE) {
+export function roleStaff(req, res, next) {
+  if (req.user.role == constants.ROLE.STAFF) {
     return next();
   }
   return res.sendStatus(HTTPStatus.FORBIDDEN);

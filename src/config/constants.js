@@ -34,4 +34,8 @@ export default {
     PURCHASED: 0,
     SELLED: 1,
   },
+  RECEIPT: {
+    IN: 0,
+    OUT: 1,
+  },
 };
