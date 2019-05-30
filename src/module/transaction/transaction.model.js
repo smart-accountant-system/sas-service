@@ -7,14 +7,15 @@ const TransactionSchema = new Schema({
     ref: 'Receipt',
     required: true,
   },
+  amount: {
+    type: Number,
+    default: 0,
+    required: true,
+  },
   fromAccount: {
     id: {
       type: Schema.Types.ObjectId,
       ref: 'Account',
-      required: true,
-    },
-    amount: {
-      type: Number,
       required: true,
     },
     type: {
@@ -32,10 +33,6 @@ const TransactionSchema = new Schema({
     id: {
       type: Schema.Types.ObjectId,
       ref: 'Account',
-      required: true,
-    },
-    amount: {
-      type: Number,
       required: true,
     },
     type: {
@@ -82,6 +79,7 @@ TransactionSchema.methods = {
     return {
       _id: this._id,
       checkedBy: this.checkedBy,
+      amount: this.amount,
       receipt: this.receipt,
       fromAccount: this.fromAccount,
       toAccount: this.toAccount,

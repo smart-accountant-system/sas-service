@@ -7,24 +7,31 @@ const AccountSchema = new Schema({
     required: true,
     unique: [true, 'Account name must be unique'],
   },
+  description: {
+    type: String,
+    required: true,
+  },
+
+  debit: Number,
+  credit: Number,
+  company: {
+    type: Schema.Types.ObjectId,
+    ref: 'Company',
+    required: true,
+  },
   isRemoved: {
     type: Boolean,
     default: false,
-  },
-  createdBy: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
   },
 }, {
   timestamps: true,
 });
 
 AccountSchema.statics = {
-  createAccount(args, userID) {
+  createAccount(args, company) {
     return this.create({
       ...args,
-      createdBy: userID,
+      company,
     });
   },
   list({ search, queries } = {}) {
@@ -39,7 +46,9 @@ AccountSchema.methods = {
     return {
       _id: this._id,
       name: this.name,
-      createdBy: this.createdBy,
+      description: this.description,
+      debit: this.debit,
+      credit: this.credit,
       createdAt: this.createdAt,
     };
   },
