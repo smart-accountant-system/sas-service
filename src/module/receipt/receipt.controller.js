@@ -1,6 +1,8 @@
 /* eslint-disable no-nested-ternary */
 import HTTPStatus from 'http-status';
 import Receipt from './receipt.model';
+import Payment from '../payment/payment.model';
+import Customer from '../customer/customer.model';
 
 // @Param handler:
 //   - startDate: YYYY-MM-DD
@@ -45,6 +47,19 @@ export async function getDetailReceipt(req, res) {
 
 export async function createReceipt(req, res) {
   try {
+    // ------------- CHECKING REQ-------------
+    const payment = await Payment.findOne({ _id: req.body.payment, isRemoved: false });
+    if (!payment) {
+      return res.sendStatus(HTTPStatus.BAD_REQUEST);
+    }
+
+    const customer = await Customer.findOne({ _id: req.body.customer, isRemoved: false });
+    if (!customer) {
+      return res.sendStatus(HTTPStatus.BAD_REQUEST);
+    }
+    // ---------------------------------------
+
+
     const receipt = await Receipt.createReceipt(req.body, req.user);
     return res.status(HTTPStatus.CREATED).json(receipt);
   } catch (e) {

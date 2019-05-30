@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import HTTPStatus from 'http-status';
 import Employee from './employee.model';
+import Company from '../company/company.model';
 
 export const getEmployeeList = async (req, res) => {
   const limit = parseInt(req.query.limit, 10) || 50;
@@ -51,7 +52,12 @@ export const createEmployee = async (req, res) => {
     if (!req.user.role && !req.body.company) {
       return res.sendStatus(HTTPStatus.BAD_REQUEST);
     }
-    const employee = await Employee.create({ ...req.body, company: req.user.company || req.body.company });
+    const company = await Company.findOne({ _id: req.user.company || req.body.company, isRemoved: false });
+    if (!company) {
+      return res.sendStatus(HTTPStatus.BAD_REQUEST);
+    }
+
+    const employee = await Employee.create({ ...req.body, company: company._id });
     return res.status(HTTPStatus.CREATED).json(employee.toJSON());
   } catch (error) {
     return res.status(HTTPStatus.BAD_REQUEST).json(error.message);

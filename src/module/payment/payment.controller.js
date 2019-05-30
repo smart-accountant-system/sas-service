@@ -1,7 +1,8 @@
 /* eslint-disable no-nested-ternary */
 import HTTPStatus from 'http-status';
 import Payment from './payment.model';
-
+import Invoice from './payment.route';
+import Category from '../payment-category/category.model';
 // @Param handler:
 //   - startDate: YYYY-MM-DD
 //   - endDate: YYYY-MM-DD
@@ -46,7 +47,20 @@ export async function getDetailPayment(req, res) {
 
 export async function createPayment(req, res) {
   try {
+    // ------------- CHECKING REQ-------------
+    const invoice = await Invoice.findOne({ _id: req.body.invoice, isRemoved: false });
+    if (!invoice) {
+      return res.sendStatus(HTTPStatus.BAD_REQUEST);
+    }
+
+    const category = await Category.findOne({ _id: req.body.category, isRemoved: false });
+    if (!category) {
+      return res.sendStatus(HTTPStatus.BAD_REQUEST);
+    }
+    // ---------------------------------------
+
     const payment = await Payment.createPayment(req.body, req.user);
+
     return res.status(HTTPStatus.CREATED).json(payment);
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
