@@ -28,7 +28,7 @@ export default {
   ROLE: {
     MANAGER: 2,
     ACCOUNTANT: 1,
-    EMPLOYEE: 0,
+    STAFF: 0,
   },
   INVOICE: {
     PURCHASED: 0,
@@ -37,5 +37,9 @@ export default {
   RECEIPT: {
     IN: 0,
     OUT: 1,
+  },
+  ACCOUNT_TYPE: {
+    CREDIT: 0,
+    DEBIT: 1,
   },
 };
