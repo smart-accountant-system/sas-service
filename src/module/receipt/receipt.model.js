@@ -17,10 +17,15 @@ const ReceiptSchema = new Schema({
     required: true,
     validate: {
       validator(v) {
-        return v == constants.RECEIPT.IN || v == constants.RECEIPT.OUT;
+        return v == constants.RECEIPT.TYPE.IN || v == constants.RECEIPT.TYPE.OUT;
       },
       message: props => `${props.value} is not a valid type number`,
     },
+  },
+
+  status: {
+    type: Boolean,
+    default: constants.RECEIPT.STATUS.NEW,
   },
 
   company: {

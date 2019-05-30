@@ -35,8 +35,14 @@ export default {
     SELLED: 1,
   },
   RECEIPT: {
-    IN: 0,
-    OUT: 1,
+    TYPE: {
+      IN: 0,
+      OUT: 1,
+    },
+    STATUS: {
+      NEW: false,
+      DONE: true,
+    },
   },
   ACCOUNT_TYPE: {
     CREDIT: 0,
