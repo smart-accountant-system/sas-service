@@ -53,25 +53,6 @@ export async function createInvoice(req, res) {
   }
 }
 
-export async function updateInvoice(req, res) {
-  try {
-    const invoice = await Invoice.findOne({ _id: req.params.id, isRemoved: false });
-    if (!invoice) {
-      return res.sendStatus(HTTPStatus.NOT_FOUND);
-    }
-
-    Object.keys(req.body).forEach(key => {
-      invoice[key] = req.body[key];
-    });
-
-    await invoice.save();
-
-    return res.status(HTTPStatus.OK).json(invoice);
-  } catch (e) {
-    return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
-  }
-}
-
 export async function deleteInvoice(req, res) {
   try {
     const invoice = await Invoice.findOne({ _id: req.params.id, isRemoved: false });

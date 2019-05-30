@@ -53,25 +53,6 @@ export async function createPayment(req, res) {
   }
 }
 
-export async function updatePayment(req, res) {
-  try {
-    const payment = await Payment.findOne({ _id: req.params.id, isRemoved: false });
-    if (!payment) {
-      return res.sendStatus(HTTPStatus.NOT_FOUND);
-    }
-
-    Object.keys(req.body).forEach(key => {
-      payment[key] = req.body[key];
-    });
-
-    await payment.save();
-
-    return res.status(HTTPStatus.OK).json(payment);
-  } catch (e) {
-    return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
-  }
-}
-
 export async function deletePayment(req, res) {
   try {
     const payment = await Payment.findOne({ _id: req.params.id, isRemoved: false });

@@ -51,26 +51,6 @@ export async function createReceipt(req, res) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
   }
 }
-
-export async function updateReceipt(req, res) {
-  try {
-    const receipt = await Receipt.findOne({ _id: req.params.id, isRemoved: false });
-    if (!receipt) {
-      return res.sendStatus(HTTPStatus.NOT_FOUND);
-    }
-
-    Object.keys(req.body).forEach(key => {
-      receipt[key] = req.body[key];
-    });
-
-    await receipt.save();
-
-    return res.status(HTTPStatus.OK).json(receipt);
-  } catch (e) {
-    return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
-  }
-}
-
 export async function deleteReceipt(req, res) {
   try {
     const receipt = await Receipt.findOne({ _id: req.params.id, isRemoved: false });
