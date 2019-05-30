@@ -11,14 +11,4 @@ export default {
       allowUnknownBody: false,
     },
   },
-  editReceipt: {
-    body: {
-      payment: Joi.string(),
-      customer: Joi.string(),
-      type: Joi.number().min(0).max(1),
-    },
-    options: {
-      allowUnknownBody: false,
-    },
-  },
 };

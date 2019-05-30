@@ -12,15 +12,4 @@ export default {
       allowUnknownBody: false,
     },
   },
-  editPayment: {
-    body: {
-      invoice: Joi.string(),
-      category: Joi.string(),
-      amountMoney: Joi.number().min(0),
-      description: Joi.string(),
-    },
-    options: {
-      allowUnknownBody: false,
-    },
-  },
 };

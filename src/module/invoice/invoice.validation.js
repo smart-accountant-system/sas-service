@@ -14,17 +14,4 @@ export default {
       allowUnknownBody: false,
     },
   },
-  editInvoice: {
-    body: {
-      detail: Joi.array().items({
-        product: Joi.string(),
-        quantity: Joi.number(),
-        unitPrice: Joi.number(),
-      }),
-      type: Joi.number().min(0).max(1),
-    },
-    options: {
-      allowUnknownBody: false,
-    },
-  },
 };

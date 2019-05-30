@@ -10,7 +10,6 @@ const routes = new Router();
 routes.get('/', authJwt, roleNOTA, receiptController.getReceiptList);
 routes.get('/:id', authJwt, roleNOTA, receiptController.getDetailReceipt);
 routes.post('/', authJwt, roleStaff, validate(receiptValidation.createReceipt), receiptController.createReceipt);
-routes.patch('/:id', authJwt, roleStaff, validate(receiptValidation.editReceipt), receiptController.updateReceipt);
 routes.delete('/:id', authJwt, roleStaff, receiptController.deleteReceipt);
 
 export default routes;
