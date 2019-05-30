@@ -10,8 +10,24 @@ export function roleNOTA(req, res, next) {
 }
 
 
+// NOTS: NOTSTAFF
+export function roleNOTS(req, res, next) {
+  if (req.user.role != constants.ROLE.STAFF) {
+    return next();
+  }
+  return res.sendStatus(HTTPStatus.FORBIDDEN);
+}
+
+
 export function roleAdmin(req, res, next) {
   if (!req.user.role) {
+    return next();
+  }
+  return res.sendStatus(HTTPStatus.FORBIDDEN);
+}
+
+export function roleAccountant(req, res, next) {
+  if (req.user.role == constants.ROLE.ACCOUNTANT) {
     return next();
   }
   return res.sendStatus(HTTPStatus.FORBIDDEN);

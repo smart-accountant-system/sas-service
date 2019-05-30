@@ -1,45 +1,62 @@
 import mongoose, { Schema } from 'mongoose';
+import constants from '../../config/constants';
 
 const TransactionSchema = new Schema({
-  payment: {
+  receipt: {
     type: Schema.Types.ObjectId,
-    ref: 'Payment',
+    ref: 'Receipt',
     required: true,
   },
-  description: {
-    type: String,
-    required: true,
-  },
-  firstAccount: {
-    _id: {
+  fromAccount: {
+    id: {
       type: Schema.Types.ObjectId,
       ref: 'Account',
       required: true,
     },
-    cost: {
+    amount: {
       type: Number,
       required: true,
     },
+    type: {
+      type: Number,
+      required: true,
+      validate: {
+        validator(v) {
+          return v == constants.ACCOUNT_TYPE.CREDIT || v == constants.ACCOUNT_TYPE.DEBIT;
+        },
+        message: props => `${props.value} is not a valid type number`,
+      },
+    },
   },
-  secondAccount: {
-    _id: {
+  toAccount: {
+    id: {
       type: Schema.Types.ObjectId,
       ref: 'Account',
       required: true,
     },
-    cost: {
+    amount: {
       type: Number,
       required: true,
     },
+    type: {
+      type: Number,
+      required: true,
+      validate: {
+        validator(v) {
+          return v == constants.ACCOUNT_TYPE.CREDIT || v == constants.ACCOUNT_TYPE.DEBIT;
+        },
+        message: props => `${props.value} is not a valid type number`,
+      },
+    },
+  },
+  checkedBy: {
+    type: Schema.Types.ObjectId,
+    ref: 'Employee',
+    required: true,
   },
   company: {
     type: Schema.Types.ObjectId,
     ref: 'Company',
-    required: true,
-  },
-  createdBy: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
     required: true,
   },
   isRemoved: {
@@ -55,7 +72,7 @@ TransactionSchema.statics = {
     return this.create({
       ...args,
       company: user.company,
-      createdBy: user._id,
+      checkedBy: user._id,
     });
   },
 };
@@ -64,12 +81,10 @@ TransactionSchema.methods = {
   toJSON() {
     return {
       _id: this._id,
-      payment: this.payment,
-      description: this.description,
-      firstAccount: this.firstAccount,
-      secondAccount: this.secondAccount,
-      company: this.company,
-      createdBy: this.createdBy,
+      checkedBy: this.checkedBy,
+      receipt: this.receipt,
+      fromAccount: this.fromAccount,
+      toAccount: this.toAccount,
       createdAt: this.createdAt,
     };
   },

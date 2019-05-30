@@ -53,25 +53,6 @@ export async function createTransaction(req, res) {
   }
 }
 
-export async function updateTransaction(req, res) {
-  try {
-    const transaction = await Transaction.findOne({ _id: req.params.id, isRemoved: false });
-    if (!transaction) {
-      return res.sendStatus(HTTPStatus.NOT_FOUND);
-    }
-
-    Object.keys(req.body).forEach(key => {
-      transaction[key] = req.body[key];
-    });
-
-    await transaction.save();
-
-    return res.status(HTTPStatus.OK).json(transaction);
-  } catch (e) {
-    return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
-  }
-}
-
 export async function deleteTransaction(req, res) {
   try {
     const transaction = await Transaction.findOne({ _id: req.params.id, isRemoved: false });
