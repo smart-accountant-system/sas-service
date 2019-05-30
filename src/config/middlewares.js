@@ -21,9 +21,9 @@ export default app => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(passport.initialize());
   if (isProd) {
-    app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   } else {
-    app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDev));
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDev));
   }
   app.use(cors());
 };
