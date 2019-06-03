@@ -71,6 +71,7 @@ AdminSchema.methods = {
     return jwt.sign(
       {
         _id: this._id,
+        role: 'admin',
         exp: parseInt(expirationDate.getTime() / 1000, 10),
       },
       constants.JWT_SECRET,

@@ -85,6 +85,7 @@ EmployeeSchema.methods = {
     return jwt.sign(
       {
         _id: this._id,
+        role: 'employee',
         exp: parseInt(expirationDate.getTime() / 1000, 10),
       },
       constants.JWT_SECRET,

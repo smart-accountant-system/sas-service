@@ -26,9 +26,9 @@ export default {
   ...envConfig(process.env.NODE_ENV),
   AUTH_TOKEN_LIFESPAN: 1,
   ROLE: {
-    MANAGER: 2,
-    ACCOUNTANT: 1,
-    STAFF: 0,
+    MANAGER: 3,
+    ACCOUNTANT: 2,
+    STAFF: 1,
   },
   INVOICE: {
     PURCHASED: 0,
