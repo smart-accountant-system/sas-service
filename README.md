@@ -19,14 +19,14 @@ yarn && yarn dev
 
 ```JSON
 {
-    "_id" : ObjectId("5cdee0d85626682a64b4fbcb"),
+    "_id" : ObjectId("5cf54198e88ac320c0014e1f"),
     "isRemoved" : false,
     "username" : "thor",
-    "password" : "$2a$10$nABLGjTf.G0kYKoSHbv2auexa.8u4jcqqTvpzDtMob3EA9u0Dsr9i",
+    "password" : "$2a$10$DpYIO6e83j3Iup8jaHVq/uQg8hX2P0G9ZhS6mlKvC0C9QhIoC11tK",
     "fullname" : "duke thor",
     "phone" : "1234567890",
-    "createdAt" : ISODate("2019-05-17T16:27:04.946+0000"),
-    "updatedAt" : ISODate("2019-05-17T16:27:04.946+0000"),
+    "createdAt" : ISODate("2019-06-03T15:49:44.276+0000"),
+    "updatedAt" : ISODate("2019-06-03T15:49:44.276+0000"),
     "__v" : NumberInt(0)
 }
 ```
