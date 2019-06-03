@@ -11,12 +11,17 @@
   "paths": {
     "/admins": {
       "get": {
-        "tags": ["admin"],
+        "tags": [
+          "admin"
+        ],
         "summary": "Get a list of admins",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -65,12 +70,17 @@
         }
       },
       "post": {
-        "tags": ["admin"],
+        "tags": [
+          "admin"
+        ],
         "summary": "Add a new admin",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -80,7 +90,11 @@
             "name": "admin",
             "schema": {
               "type": "object",
-              "required": ["username", "password", "fullname"],
+              "required": [
+                "username",
+                "password",
+                "fullname"
+              ],
               "properties": {
                 "username": {
                   "type": "string"
@@ -119,12 +133,17 @@
     },
     "/admins/login": {
       "post": {
-        "tags": ["admin"],
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
+        "tags": [
+          "admin"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "summary": "Login",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -134,7 +153,10 @@
             "name": "admin",
             "schema": {
               "type": "object",
-              "required": ["username", "password"],
+              "required": [
+                "username",
+                "password"
+              ],
               "properties": {
                 "username": {
                   "type": "string"
@@ -157,13 +179,50 @@
       }
     },
     "/admins/{id}": {
-      "patch": {
-        "tags": ["admin"],
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "summary": "Update info of an admin",
-        "parameters": [
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Get info of an admin",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
           {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Update info of an admin",
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -212,12 +271,17 @@
         }
       },
       "delete": {
-        "tags": ["admin"],
+        "tags": [
+          "admin"
+        ],
         "summary": "Delete an admin",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -241,17 +305,21 @@
     },
     "/companies": {
       "get": {
-        "tags": ["company"],
-        "summary": "Get a list of companies",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "header",
-            "name": "token",
-            "type": "string"
-          }
+        "tags": [
+          "company"
         ],
+        "summary": "Get a list of companies",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+          "in": "header",
+          "name": "token",
+          "type": "string"
+        }],
         "responses": {
           "200": {
             "schema": {
@@ -279,12 +347,17 @@
         }
       },
       "post": {
-        "tags": ["company"],
+        "tags": [
+          "company"
+        ],
         "summary": "Add a new company",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -294,7 +367,9 @@
             "name": "company",
             "schema": {
               "type": "object",
-              "required": ["name"],
+              "required": [
+                "name"
+              ],
               "properties": {
                 "name": {
                   "type": "string"
@@ -317,13 +392,50 @@
       }
     },
     "/companies/{id}": {
-      "patch": {
-        "tags": ["company"],
-        "summary": "Update info of a company",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
+      "get": {
+        "tags": [
+          "company"
+        ],
+        "summary": "Get info of an company",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
           {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "company"
+        ],
+        "summary": "Update info of a company",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -357,12 +469,17 @@
         }
       },
       "delete": {
-        "tags": ["company"],
+        "tags": [
+          "company"
+        ],
         "summary": "Delete a company by id",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -386,12 +503,17 @@
     },
     "/employees": {
       "get": {
-        "tags": ["employee"],
+        "tags": [
+          "employee"
+        ],
         "summary": "Get a list of employees",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -418,7 +540,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "admins": {
+                "employees": {
                   "type": "array",
                   "items": {
                     "type": "object"
@@ -440,22 +562,31 @@
         }
       },
       "post": {
-        "tags": ["employee"],
+        "tags": [
+          "employee"
+        ],
         "summary": "Add a new employee",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
           },
           {
             "in": "body",
-            "name": "admin",
+            "name": "employee",
             "schema": {
               "type": "object",
-              "required": ["username", "password", "fullname"],
+              "required": [
+                "username",
+                "password",
+                "fullname"
+              ],
               "properties": {
                 "username": {
                   "type": "string"
@@ -494,22 +625,30 @@
     },
     "/employees/login": {
       "post": {
-        "tags": ["employee"],
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
+        "tags": [
+          "employee"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "summary": "Login",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
           },
           {
             "in": "body",
-            "name": "admin",
+            "name": "employee",
             "schema": {
               "type": "object",
-              "required": ["username", "password"],
+              "required": [
+                "username",
+                "password"
+              ],
               "properties": {
                 "username": {
                   "type": "string"
@@ -533,12 +672,17 @@
     },
     "/employees/{id}": {
       "get": {
-        "tags": ["employee"],
+        "tags": [
+          "employee"
+        ],
         "summary": "Get info of an employee",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
-          {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -560,12 +704,17 @@
         }
       },
       "patch": {
-        "tags": ["employee"],
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
+        "tags": [
+          "employee"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "summary": "Update info of an employee",
-        "parameters": [
-          {
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
@@ -578,7 +727,7 @@
           },
           {
             "in": "body",
-            "name": "admin",
+            "name": "employee",
             "schema": {
               "type": "object",
               "properties": {
@@ -614,12 +763,1280 @@
         }
       },
       "delete": {
-        "tags": ["employee"],
+        "tags": [
+          "employee"
+        ],
         "summary": "Delete an employee",
-        "consumes": ["application/json"],
-        "produces": ["application/json"],
-        "parameters": [
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
           {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/invoices": {
+      "get": {
+        "tags": [
+          "invoice"
+        ],
+        "summary": "Get a list of invoices",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "invoices": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "total": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Check your token"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "invoice"
+        ],
+        "summary": "Add a new invoice",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "invoice",
+            "schema": {
+              "type": "object",
+              "required": [
+                "detail",
+                "type"
+              ],
+              "properties": {
+                "detail": {
+                  "type": "object",
+                  "required": [
+                    "product",
+                    "quantity",
+                    "unitPrice"
+                  ],
+                  "properties": {
+                    "product": {
+                      "type": "string"
+                    },
+                    "quantity": {
+                      "type": "number"
+                    },
+                    "unitPrice": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "type": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Check your token"
+          },
+          "404": {
+            "description": "Bad Request / Unknown variable"
+          }
+        }
+      }
+    },
+    "/invoices/{id}": {
+      "get": {
+        "tags": [
+          "invoice"
+        ],
+        "summary": "Get info of an invoice",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "invoice"
+        ],
+        "summary": "Delete an invoice",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": [
+          "category"
+        ],
+        "summary": "Get a list of categories",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "total": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Check your token"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "category"
+        ],
+        "summary": "Add a new category",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "category",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "detail"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "detail": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Check your token"
+          },
+          "404": {
+            "description": "Bad Request / Unknown variable"
+          }
+        }
+      }
+    },
+    "/categories/{id}": {
+      "get": {
+        "tags": [
+          "category"
+        ],
+        "summary": "Get info of an category",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "category"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Update info of an category",
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "category",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "detail": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "category"
+        ],
+        "summary": "Delete an category",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/payments": {
+      "get": {
+        "tags": [
+          "payment"
+        ],
+        "summary": "Get a list of payments",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "payments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "total": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Check your token"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "payment"
+        ],
+        "summary": "Add a new payment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "payment",
+            "schema": {
+              "type": "object",
+              "required": [
+                "invoice",
+                "category",
+                "amountMoney",
+                "description"
+              ],
+              "properties": {
+                "invoice": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "amountMoney": {
+                  "type": "number"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Check your token"
+          },
+          "404": {
+            "description": "Bad Request / Unknown variable"
+          }
+        }
+      }
+    },
+    "/payments/{id}": {
+      "get": {
+        "tags": [
+          "payment"
+        ],
+        "summary": "Get info of an payment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "payment"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Update info of an payment",
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "payment",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "invoice": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "amountMoney": {
+                  "type": "number"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "payment"
+        ],
+        "summary": "Delete an payment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/customers": {
+      "get": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Get a list of customers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "customers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "total": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Check your token"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Add a new customer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "customer",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "phone",
+                "address"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Check your token"
+          },
+          "404": {
+            "description": "Bad Request / Unknown variable"
+          }
+        }
+      }
+    },
+    "/customers/{id}": {
+      "get": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Get info of an customer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "customer"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Update info of an customer",
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "customer",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "customer"
+        ],
+        "summary": "Delete an customer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/transactions": {
+      "get": {
+        "tags": [
+          "transaction"
+        ],
+        "summary": "Get a list of transactions",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "transactions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "total": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Check your token"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "transaction"
+        ],
+        "summary": "Add a new transaction",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "transaction",
+            "schema": {
+              "type": "object",
+              "required": [
+                "receipt",
+                "amount",
+                "fromAccount",
+                "toAccount"
+              ],
+              "properties": {
+                "receipt": {
+                  "type": "string"
+                },
+                "amount": {
+                  "type": "string"
+                },
+                "fromAccount": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "toAccount": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Check your token"
+          },
+          "404": {
+            "description": "Bad Request / Unknown variable"
+          }
+        }
+      }
+    },
+    "/transactions/{id}": {
+      "get": {
+        "tags": [
+          "transaction"
+        ],
+        "summary": "Get info of an transaction",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "transaction"
+        ],
+        "summary": "Delete an transaction",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/accounts": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Get a list of accounts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accounts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "total": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Check your token"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Add a new account",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "account",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name",
+                "description"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Check your token"
+          },
+          "404": {
+            "description": "Bad Request / Unknown variable"
+          }
+        }
+      }
+    },
+    "/accounts/{id}": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Get info of an account",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "account"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "summary": "Update info of an account",
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "account",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Delete an account",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
             "in": "header",
             "name": "token",
             "type": "string"
