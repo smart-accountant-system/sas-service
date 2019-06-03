@@ -50,11 +50,6 @@ export function roleStaff(req, res, next) {
 
 // AM: Admin or manager
 export function roleAM(req, res, next) {
-  console.log(req.user.role);
-  console.log(!req.user.role);
-  console.log(req.user.role == constants.ROLE.MANAGER);
-  
-  
   if (!req.user.role || req.user.role == constants.ROLE.MANAGER) {
     return next();
   }
