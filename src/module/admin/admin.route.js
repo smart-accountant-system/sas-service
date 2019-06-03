@@ -10,7 +10,7 @@ const routes = new Router();
 routes.get('/', authJwt, roleAdmin, getAdminList);
 routes.get('/:id', authJwt, roleAdmin, getAdmin);
 routes.post('/login', validate(adminValidation.login), authLocal, authAdmin);
-routes.post('/', authJwt, roleAdmin, validate(adminValidation.createAdmin), createAdmin);
+routes.post('/', validate(adminValidation.createAdmin), createAdmin);
 routes.patch('/:id', authJwt, roleAdmin, validate(adminValidation.editProfile), updateAdmin);
 routes.delete('/:id', authJwt, roleAdmin, deleteAdmin);
 
