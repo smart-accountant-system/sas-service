@@ -39,7 +39,7 @@ export const getEmployee = async (req, res) => {
 
 export const authEmployee = async (req, res, next) => {
   try {
-    res.status(HTTPStatus.OK).json(req.employee.toAuthJSON());
+    res.status(HTTPStatus.OK).json(req.user.toAuthJSON());
     return next();
   } catch (error) {
     return res.status(HTTPStatus.BAD_REQUEST).json(error.message);
