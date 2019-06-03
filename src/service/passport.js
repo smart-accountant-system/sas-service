@@ -44,6 +44,10 @@ const jwtStrategy = new JWTStrategy(jwtOpts, async (payload, done) => {
     console.log(payload.role == 'employee');
     console.log(payload);
     console.log(user);
+
+    const admin = await Admin.findOne({ _id: payload._id, isRemoved: false });
+    console.log('Admin:', admin);
+    
     
     if (!user) {
       return done(null, false);
