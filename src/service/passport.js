@@ -7,11 +7,12 @@ import Admin from '../module/admin/admin.model';
 
 const localOpts = {
   usernameField: 'username',
+  passReqToCallback: true,
 };
-const localStrategy = new LocalStrategy(localOpts, async (username, password, done) => {
+const localStrategy = new LocalStrategy(localOpts, async (req, username, password, done) => {
   try {
-    let user = await Employee.findOne({ username, isRemoved: false });
-    user = (!user) ? await Admin.findOne({ username, isRemoved: false }) : user;
+    const user = (!req.baseUrl.includes('admins')) ? await Employee.findOne({ username, isRemoved: false }) :
+      await Admin.findOne({ username, isRemoved: false });
 
     if (!user) {
       return done(null, false);
@@ -37,7 +38,7 @@ const jwtOpts = {
 
 const jwtStrategy = new JWTStrategy(jwtOpts, async (payload, done) => {
   try {
-    const user = (payload.role) ? await Employee.findOne({ _id: payload._id, isRemoved: false }) :
+    const user = (payload.role == 'employee') ? await Employee.findOne({ _id: payload._id, isRemoved: false }) :
       await Admin.findOne({ _id: payload._id, isRemoved: false });
     if (!user) {
       return done(null, false);
