@@ -7,6 +7,7 @@ import paymentRoutes from './payment/payment.route';
 import customerRoutes from './customer/customer.route';
 import transactionRoutes from './transaction/transaction.route';
 import accountRoutes from './account/account.route';
+import receiptRoutes from './receipt/receipt.route';
 
 export default app => {
   app.use('/admins', adminRoutes);
@@ -18,4 +19,5 @@ export default app => {
   app.use('/customers', customerRoutes);
   app.use('/transactions', transactionRoutes);
   app.use('/accounts', accountRoutes);
+  app.use('/receipts', receiptRoutes);
 };
