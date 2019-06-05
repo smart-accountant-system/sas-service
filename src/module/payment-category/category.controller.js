@@ -33,7 +33,7 @@ export async function getDetailCategory(req, res) {
 
 export async function createCategory(req, res) {
   try {
-    const category = await Category.createCategory(req.body, req.user.company);
+    const category = await Category.createPaymentCategory(req.body, req.user.company);
     return res.status(HTTPStatus.CREATED).json(category);
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
