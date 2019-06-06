@@ -2057,6 +2057,179 @@
           }
         }
       }
+    },
+    "/receipts": {
+      "get": {
+        "tags": [
+          "receipt"
+        ],
+        "summary": "Get a list of receipts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "receipts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                },
+                "total": {
+                  "type": "number"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Check your token"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "receipt"
+        ],
+        "summary": "Add a new receipt",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "receipt",
+            "schema": {
+              "type": "object",
+              "required": [
+                "payment",
+                "customer",
+                "type"
+              ],
+              "properties": {
+                "payment": {
+                  "type": "string"
+                },
+                "customer": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Check your token"
+          },
+          "404": {
+            "description": "Bad Request / Unknown variable"
+          }
+        }
+      }
+    },
+    "/receipts/{id}": {
+      "get": {
+        "tags": [
+          "receipt"
+        ],
+        "summary": "Get info of an receipt",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "receipt"
+        ],
+        "summary": "Delete an receipt",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [{
+            "in": "header",
+            "name": "token",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
     }
   }
 }
