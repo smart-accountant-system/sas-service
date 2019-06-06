@@ -59,7 +59,7 @@ InvoiceSchema.statics = {
   createInvoice(args, user) {
     return this.create({
       ...args,
-      createdBy: user.createdBy,
+      createdBy: user._id,
       company: user.company,
     });
   },
