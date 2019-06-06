@@ -67,7 +67,7 @@ InvoiceSchema.statics = {
 
 InvoiceSchema.methods = {
   calculateTotalCost() {
-    this.totalPayment = this.detail.reduce((total, item) => total + (item.unitPrice * item.quantity), 0);
+    this.totalCost = this.detail.reduce((total, item) => total + (item.unitPrice * item.quantity), 0);
   },
   toJSON() {
     return {
