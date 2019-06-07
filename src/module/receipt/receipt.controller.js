@@ -23,7 +23,8 @@ export async function getReceiptList(req, res) {
         (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
           { isRemoved: false, company: req.user.company };
 
-    const receipts = await Receipt.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 });
+    const receipts = await Receipt.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
+      .populate('customer payment');
     const total = await Receipt.count(queries);
     return res.status(HTTPStatus.OK).json({ receipts, total });
   } catch (e) {
