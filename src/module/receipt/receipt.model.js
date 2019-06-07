@@ -12,17 +12,6 @@ const ReceiptSchema = new Schema({
     ref: 'Customer',
     required: true,
   },
-  type: {
-    type: Number,
-    required: true,
-    validate: {
-      validator(v) {
-        return v == constants.RECEIPT.TYPE.IN || v == constants.RECEIPT.TYPE.OUT;
-      },
-      message: props => `${props.value} is not a valid type number`,
-    },
-  },
-
   status: {
     type: Boolean,
     default: constants.RECEIPT.STATUS.NEW,
@@ -57,7 +46,7 @@ ReceiptSchema.methods = {
       _id: this._id,
       customer: this.customer,
       payment: this.payment,
-      type: this.type,
+      status: this.status,
       createdAt: this.createdAt,
     };
   },
