@@ -14,7 +14,7 @@ const ReceiptSchema = new Schema({
   },
   status: {
     type: Boolean,
-    default: constants.RECEIPT.STATUS.NEW,
+    default: constants.RECEIPT_STATUS.NEW,
   },
 
   company: {
