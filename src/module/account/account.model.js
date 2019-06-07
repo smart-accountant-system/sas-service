@@ -12,8 +12,14 @@ const AccountSchema = new Schema({
     required: true,
   },
 
-  debit: Number,
-  credit: Number,
+  debit: {
+    type: Number,
+    default: 0,
+  },
+  credit: {
+    type: Number,
+    default: 0,
+  },
   company: {
     type: Schema.Types.ObjectId,
     ref: 'Company',

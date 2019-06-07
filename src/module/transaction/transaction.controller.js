@@ -60,12 +60,11 @@ export async function createTransaction(req, res) {
       return res.sendStatus(HTTPStatus.BAD_REQUEST);
     }
 
-    const toAcc = await Account.findOne({ _id: req.body.fromAccount.id, isRemoved: false });
+    const toAcc = await Account.findOne({ _id: req.body.toAccount.id, isRemoved: false });
     if (!toAcc) {
       return res.sendStatus(HTTPStatus.BAD_REQUEST);
     }
     // ---------------------------------------
-
 
     const transaction = await Transaction.createTransaction(req.body, req.user);
 
