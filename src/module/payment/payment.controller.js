@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import HTTPStatus from 'http-status';
 import Payment from './payment.model';
-import Invoice from './payment.route';
+import Invoice from '../invoice/invoice.model';
 import Category from '../payment-category/category.model';
 // @Param handler:
 //   - startDate: YYYY-MM-DD
