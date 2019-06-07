@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import constants from '../../config/constants';
 
 const PaymentSchema = new Schema({
   invoice: {
@@ -14,6 +15,16 @@ const PaymentSchema = new Schema({
   amountMoney: {
     type: Number,
     required: true,
+  },
+  type: {
+    type: Number,
+    required: true,
+    validate: {
+      validator(v) {
+        return v == constants.PAYMENT.IN || v == constants.PAYMENT.OUT;
+      },
+      message: props => `${props.value} is not a valid type number`,
+    },
   },
   description: {
     type: String,
@@ -45,6 +56,7 @@ PaymentSchema.methods = {
   toJSON() {
     return {
       _id: this._id,
+      type: this.type,
       invoice: this.invoice,
       category: this.category,
       amountMoney: this.amountMoney,
