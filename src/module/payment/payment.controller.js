@@ -90,6 +90,8 @@ export async function deletePayment(req, res) {
     if (!payment) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
     }
+    payment.isRemoved = true;
+    await payment.save();
 
     const invoice = await Payment.findById(payment.invoice);
     const payments = await Payment.find({ invoice: invoice._id, isRemoved: false });
@@ -107,8 +109,6 @@ export async function deletePayment(req, res) {
     }
     invoice.save();
 
-    payment.isRemoved = true;
-    await payment.save();
     return res.status(HTTPStatus.OK).json(payment);
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
