@@ -33,7 +33,7 @@ export async function getDetailInvoice(req, res) {
   try {
     const invoice = await Invoice
       .findOne({ _id: req.params.id, isRemoved: false, company: req.user.company })
-      .populate('createdBy', '-id username fullname');
+      .populate('createdBy', '-_id username fullname');
     if (!invoice) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
     }
