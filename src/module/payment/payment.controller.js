@@ -76,7 +76,7 @@ export async function createPayment(req, res) {
     } else {
       invoice.status = constants.INVOICE_STATUS.NOT_PAID;
     }
-    invoice.save();
+    await invoice.save();
 
     return res.status(HTTPStatus.CREATED).json(payment);
   } catch (e) {
@@ -93,7 +93,7 @@ export async function deletePayment(req, res) {
     payment.isRemoved = true;
     await payment.save();
 
-    const invoice = await Payment.findById(payment.invoice);
+    const invoice = await Invoice.findById(payment.invoice);
     const payments = await Payment.find({ invoice: invoice._id, isRemoved: false });
     const balance = payments.reduce((total, item) => {
       const flag = (invoice.type === constants.INVOICE.SELLED) ? 1 : -1;
@@ -107,7 +107,7 @@ export async function deletePayment(req, res) {
     } else {
       invoice.status = constants.INVOICE_STATUS.NOT_PAID;
     }
-    invoice.save();
+    await invoice.save();
 
     return res.status(HTTPStatus.OK).json(payment);
   } catch (e) {
