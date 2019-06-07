@@ -34,11 +34,13 @@ export default {
     PURCHASED: 0,
     SELLED: 1,
   },
-  RECEIPT: {
-    STATUS: {
-      NEW: false,
-      DONE: true,
-    },
+  PAYMENT: {
+    IN: 0,
+    OUT: 1,
+  },
+  RECEIPT_STATUS: {
+    NEW: false,
+    DONE: true,
   },
   ACCOUNT_TYPE: {
     CREDIT: 0,

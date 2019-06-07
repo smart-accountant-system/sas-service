@@ -69,7 +69,7 @@ export async function createTransaction(req, res) {
 
     const transaction = await Transaction.createTransaction(req.body, req.user);
 
-    receipt.status = constants.RECEIPT.STATUS.DONE;
+    receipt.status = constants.RECEIPT_STATUS.DONE;
     await receipt.save();
 
     if (transaction.fromAccount.type == constants.ACCOUNT_TYPE.DEBIT) {
@@ -103,7 +103,7 @@ export async function deleteTransaction(req, res) {
     }
 
     const receipt = await Receipt.findById(transaction.receipt);
-    receipt.status = constants.RECEIPT.STATUS.NEW;
+    receipt.status = constants.RECEIPT_STATUS.NEW;
     await receipt.save();
 
 
