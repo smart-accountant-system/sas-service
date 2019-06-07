@@ -3,6 +3,8 @@ import HTTPStatus from 'http-status';
 import Payment from './payment.model';
 import Invoice from '../invoice/invoice.model';
 import Category from '../payment-category/category.model';
+import constants from '../../config/constants';
+
 // @Param handler:
 //   - startDate: YYYY-MM-DD
 //   - endDate: YYYY-MM-DD
@@ -61,6 +63,21 @@ export async function createPayment(req, res) {
 
     const payment = await Payment.createPayment(req.body, req.user);
 
+    const payments = await Payment.find({ invoice: invoice._id, isRemoved: false });
+    const balance = payments.reduce((total, item) => {
+      const flag = (invoice.type === constants.INVOICE.SELLED) ? 1 : -1;
+      return ((item.type === constants.PAYMENT.IN) ? 
+        total + (flag * item.amountMoney) : 
+        total - (flag * item.amountMoney));
+    }, 0);
+    
+    if (balance === invoice.totalCost) {
+      invoice.status = constants.INVOICE_STATUS.PAID;
+    } else {
+      invoice.status = constants.INVOICE_STATUS.NOT_PAID;
+    }
+    invoice.save();
+
     return res.status(HTTPStatus.CREATED).json(payment);
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
@@ -73,6 +90,23 @@ export async function deletePayment(req, res) {
     if (!payment) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
     }
+
+    const invoice = await Payment.findById(payment.invoice);
+    const payments = await Payment.find({ invoice: invoice._id, isRemoved: false });
+    const balance = payments.reduce((total, item) => {
+      const flag = (invoice.type === constants.INVOICE.SELLED) ? 1 : -1;
+      return ((item.type === constants.PAYMENT.IN) ? 
+        total + (flag * item.amountMoney) : 
+        total - (flag * item.amountMoney));
+    }, 0);
+    
+    if (balance === invoice.totalCost) {
+      invoice.status = constants.INVOICE_STATUS.PAID;
+    } else {
+      invoice.status = constants.INVOICE_STATUS.NOT_PAID;
+    }
+    invoice.save();
+
     payment.isRemoved = true;
     await payment.save();
     return res.status(HTTPStatus.OK).json(payment);
