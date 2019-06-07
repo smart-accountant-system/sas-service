@@ -28,6 +28,11 @@ const InvoiceSchema = new Schema({
     },
   },
 
+  status: {
+    type: Boolean,
+    default: constants.INVOICE_STATUS.NOT_PAID,
+  },
+
   totalCost: {
     type: Number,
     default: 0,
@@ -75,6 +80,7 @@ InvoiceSchema.methods = {
       type: this.type,
       detail: this.detail,
       totalCost: this.totalCost,
+      status: this.status,
       createdBy: this.createdBy,
       createdAt: this.createdAt,
     };

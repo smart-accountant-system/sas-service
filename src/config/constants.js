@@ -24,24 +24,36 @@ function envConfig(env) {
 export default {
   ...defaultConfig,
   ...envConfig(process.env.NODE_ENV),
+  
   AUTH_TOKEN_LIFESPAN: 1,
+  
   ROLE: {
     MANAGER: 3,
     ACCOUNTANT: 2,
     STAFF: 1,
   },
+
+
   INVOICE: {
     PURCHASED: 0,
     SELLED: 1,
   },
+  INVOICE_STATUS: {
+    PAID: true,
+    NOT_PAID: false,
+  },
+
+  
   PAYMENT: {
     IN: 0,
     OUT: 1,
   },
+  
   RECEIPT_STATUS: {
     NEW: false,
     DONE: true,
   },
+  
   ACCOUNT_TYPE: {
     CREDIT: 0,
     DEBIT: 1,
