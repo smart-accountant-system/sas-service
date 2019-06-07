@@ -35,10 +35,6 @@ export default {
     SELLED: 1,
   },
   RECEIPT: {
-    TYPE: {
-      IN: 0,
-      OUT: 1,
-    },
     STATUS: {
       NEW: false,
       DONE: true,
