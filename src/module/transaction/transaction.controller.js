@@ -26,7 +26,8 @@ export async function getTransactionList(req, res) {
 
     const transactions = await Transaction.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
       .populate('fromAccount.id', 'name')
-      .populate('toAccount.id', 'name');
+      .populate('toAccount.id', 'name')
+      .populate('checkedBy', 'fullname');
     const total = await Transaction.count(queries);
     return res.status(HTTPStatus.OK).json({ transactions, total });
   } catch (e) {

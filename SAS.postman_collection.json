@@ -1,12 +1,73 @@
 {
 	"info": {
-		"_postman_id": "5b38d997-3e49-43e7-8bf9-de4eff13cdb8",
+		"_postman_id": "9103ddc3-5d8c-4b34-a9a4-ed97c27f2ea8",
 		"name": "SAS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "[User] Login",
+			"name": "[Admin] Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"123456\",\n\t\"phone\": \"0123456789\",\n\t\"fullname\": \"My name is admin\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/admins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"admins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Admin] Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/admins/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"admins",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Employee] Login",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -19,17 +80,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": \"employee\",\n\t\"password\": \"123456\"\n}"
+					"raw": "{\n\t\"username\": \"accountant\",\n\t\"password\": \"123456\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:7777/user/login",
+					"raw": "http://localhost:7777/employees/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"user",
+						"employees",
 						"login"
 					]
 				}
@@ -37,7 +98,7 @@
 			"response": []
 		},
 		{
-			"name": "[User] Search",
+			"name": "[Employee] Search",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -74,7 +135,7 @@
 			"response": []
 		},
 		{
-			"name": "[User] Get a user",
+			"name": "[Employee] Get a user",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -105,7 +166,7 @@
 			"response": []
 		},
 		{
-			"name": "[User] Add",
+			"name": "[Employee] Add",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -117,23 +178,23 @@
 					},
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg1MDM0MTMsImlhdCI6MTU1ODQxNzAxM30.OYc2itmT0sHJU7nDIkz8V7yEGOWiWXqyjNE_6PEgFas",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTAyNmNiMTg0NjdmNGI0NTkyMmMiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE1NTk5OTQ4MDIsImlhdCI6MTU1OTkwODQwMn0.kmNtAT-JVjWRONwbruvAauwsbjQYBHz_yXaAHJNu4Fs",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": \"employee\",\n\t\"password\": \"123456\",\n\t\"email\": \"employee@gmai.com\",\n\t\"fullname\": \"Employeeeee\",\n\t\"phone\": \"0947857301\",\n\t\"role\": 0,\n\t\"company\": \"5ce298743e2396169c442b93\"\n}"
+					"raw": "{\n\t\"username\": \"manager\",\n\t\"password\": \"123456\",\n\t\"email\": \"manager@company.com\",\n\t\"fullname\": \"manager\",\n\t\"phone\": \"0947857301\",\n\t\"role\": 3,\n\t\"company\": \"5cfa51f86c8db18036f0061d\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:7777/user/?",
+					"raw": "http://localhost:7777/employees/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"user",
+						"employees",
 						""
 					],
 					"query": [
@@ -148,7 +209,7 @@
 			"response": []
 		},
 		{
-			"name": "[User] Edit",
+			"name": "[Employee] Edit",
 			"request": {
 				"method": "PATCH",
 				"header": [
@@ -184,7 +245,7 @@
 			"response": []
 		},
 		{
-			"name": "[User] Delete",
+			"name": "[Employee] Delete",
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -227,14 +288,14 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:7777/company/?search=",
+					"raw": "http://localhost:7777/companies/?search=",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"company",
+						"companies",
 						""
 					],
 					"query": [
@@ -259,14 +320,14 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:7777/company/5ce298743e2396169c442b93",
+					"raw": "http://localhost:7777/companies/5ce298743e2396169c442b93",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"company",
+						"companies",
 						"5ce298743e2396169c442b93"
 					]
 				}
@@ -281,7 +342,7 @@
 					{
 						"key": "token",
 						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg0Mzk4NDAsImlhdCI6MTU1ODM1MzQ0MH0.Ex72Sv-Rmw7H9U6QctL3nrSVYMeqmd9FlTsS4zw8EJU"
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTAyNmNiMTg0NjdmNGI0NTkyMmMiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE1NTk5OTQ4MDIsImlhdCI6MTU1OTkwODQwMn0.kmNtAT-JVjWRONwbruvAauwsbjQYBHz_yXaAHJNu4Fs"
 					},
 					{
 						"key": "Content-Type",
@@ -292,17 +353,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Công ty trách nhiệm có hạn BBB\"\n}"
+					"raw": "{\n\t\"name\": \"Công ty trách nhiệm có hạn AAA\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:7777/company/",
+					"raw": "http://localhost:7777/companies/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"company",
+						"companies",
 						""
 					]
 				}
@@ -331,14 +392,14 @@
 					"raw": "{\n\t\"name\": \"Công ty trách nhiệm có hạn CCC\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:7777/company/5ce2983b3e2396169c442b91",
+					"raw": "http://localhost:7777/companies/5ce2983b3e2396169c442b91",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"company",
+						"companies",
 						"5ce2983b3e2396169c442b91"
 					]
 				}
@@ -367,14 +428,14 @@
 					"raw": "{\n\t\"name\": \"Công ty trách nhiệm có hạn CCC\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:7777/company/5ce2983b3e2396169c442b91",
+					"raw": "http://localhost:7777/companies/5ce2983b3e2396169c442b91",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"company",
+						"companies",
 						"5ce2983b3e2396169c442b91"
 					]
 				}
@@ -388,19 +449,19 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg1MzgwMTUsImlhdCI6MTU1ODQ1MTYxNX0.K_Sh8geh6z6ZEYkEfwLklumcr1QW_IrkKzU8jbVCR1M",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTJhMzkxODhiYzgwNzQ5Njk5MzYiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NTk5OTU1MzksImlhdCI6MTU1OTkwOTEzOX0.ByD9kYl874go92Sb9Bim14jdESm730SJGG1aMBPRjKQ",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:7777/invoice/?",
+					"raw": "http://localhost:7777/invoices/?",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"invoice",
+						"invoices",
 						""
 					],
 					"query": [
@@ -427,19 +488,19 @@
 					{
 						"key": "token",
 						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MDM4MTQsImlhdCI6MTU1ODQxNzQxNH0.lE-WfUVwnKLceKhE6lVcgdk_s9EKBIIYBeJEw5Jl4Vo"
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTIwMjZjOGRiMTgwMzZmMDA2MWUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NTk5OTU2MzAsImlhdCI6MTU1OTkwOTIzMH0.QgrZklGHNHNm0MJeoQj5CS3eMaWFTDwmdHfeDK9iHag"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:7777/invoice/5ce3a767fa0b4c08949ff73c",
+					"raw": "http://localhost:7777/invoices/5cfa53b59188bc8074969937",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"invoice",
-						"5ce3a767fa0b4c08949ff73c"
+						"invoices",
+						"5cfa53b59188bc8074969937"
 					]
 				}
 			},
@@ -453,7 +514,7 @@
 					{
 						"key": "token",
 						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MDM4MTQsImlhdCI6MTU1ODQxNzQxNH0.lE-WfUVwnKLceKhE6lVcgdk_s9EKBIIYBeJEw5Jl4Vo"
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTIwMjZjOGRiMTgwMzZmMDA2MWUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NTk5OTU2MzAsImlhdCI6MTU1OTkwOTIzMH0.QgrZklGHNHNm0MJeoQj5CS3eMaWFTDwmdHfeDK9iHag"
 					},
 					{
 						"key": "Content-Type",
@@ -464,17 +525,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"detail\": [\n\t\t{\n\t\t\t\"product\": \"Sua ong Tho\",\n\t\t\t\"quantity\": 10,\n\t\t\t\"unitPrice\": 10\n\t\t}]\n}"
+					"raw": "{\n\t\"detail\": [\n\t\t{\n\t\t\t\"product\": \"Sua ong Tho\",\n\t\t\t\"quantity\": 1,\n\t\t\t\"unitPrice\": 22\n\t\t},{\n\t\t\t\"product\": \"Vu de nuong\",\n\t\t\t\"quantity\": 5,\n\t\t\t\"unitPrice\": 15\n\t\t}],\n\t\t\"type\": 1\n}"
 				},
 				"url": {
-					"raw": "http://localhost:7777/invoice/",
+					"raw": "http://localhost:7777/invoices/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"invoice",
+						"invoices",
 						""
 					]
 				}
@@ -489,7 +550,7 @@
 					{
 						"key": "token",
 						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MDM4MTQsImlhdCI6MTU1ODQxNzQxNH0.lE-WfUVwnKLceKhE6lVcgdk_s9EKBIIYBeJEw5Jl4Vo"
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTIwMjZjOGRiMTgwMzZmMDA2MWUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NTk5OTU2MzAsImlhdCI6MTU1OTkwOTIzMH0.QgrZklGHNHNm0MJeoQj5CS3eMaWFTDwmdHfeDK9iHag"
 					},
 					{
 						"key": "Content-Type",
@@ -503,15 +564,387 @@
 					"raw": "{\n\t\"detail\": [\n\t\t{\n\t\t\t\"product\": \"Sua ong Tho\",\n\t\t\t\"quantity\": 10,\n\t\t\t\"unitPrice\": 10\n\t\t}]\n}"
 				},
 				"url": {
-					"raw": "http://localhost:7777/invoice/5ce3a767fa0b4c08949ff73c",
+					"raw": "http://localhost:7777/invoices/5cfa57561d96cd825af5dd5a",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"invoice",
-						"5ce3a767fa0b4c08949ff73c"
+						"invoices",
+						"5cfa57561d96cd825af5dd5a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Payment] Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTIwMjZjOGRiMTgwMzZmMDA2MWUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NTk5OTU2MzAsImlhdCI6MTU1OTkwOTIzMH0.QgrZklGHNHNm0MJeoQj5CS3eMaWFTDwmdHfeDK9iHag"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"invoice\": \"5cfa5aa105a08584298cbf74\",\n\t\"category\": \"5cfa54409188bc8074969938\",\n\t\"amountMoney\": 3,\n\t\"description\": \"Khach k co tien le\",\n\t\"type\": 1\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/payments/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"payments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Payment Caterogy] Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTJhMzkxODhiYzgwNzQ5Njk5MzYiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NTk5OTU3ODEsImlhdCI6MTU1OTkwOTM4MX0.UBXM-i8l6s4PA1_jB4B-wX8WxtiLLS_UJjcrQQP2jtE"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"detail\": \"Chi chap nhan thanh toan bang tien mat\",\n\t\"name\": \"CASH\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/categories/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"categories",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Payment] Get list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTIwMjZjOGRiMTgwMzZmMDA2MWUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NTk5OTU2MzAsImlhdCI6MTU1OTkwOTIzMH0.QgrZklGHNHNm0MJeoQj5CS3eMaWFTDwmdHfeDK9iHag"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"invoice\": \"5cfa53b59188bc8074969937\",\n\t\"category\": \"5cfa54409188bc8074969938\",\n\t\"amountMoney\": 3,\n\t\"description\": \"Tra tien cho khach vi khach hang khong co tien le...\",\n\t\"type\": 1\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/payments/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"payments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Payment] Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTIwMjZjOGRiMTgwMzZmMDA2MWUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NTk5OTU2MzAsImlhdCI6MTU1OTkwOTIzMH0.QgrZklGHNHNm0MJeoQj5CS3eMaWFTDwmdHfeDK9iHag"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"invoice\": \"5cfa53b59188bc8074969937\",\n\t\"category\": \"5cfa54409188bc8074969938\",\n\t\"amountMoney\": 194,\n\t\"description\": \"...Em mua do 97K, Khach dua em 100K, em thoi` 3K, thanh ra em thieu khach 97K x 2 = 194\",\n\t\"type\": 1\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/payments/5cfa5ad105a08584298cbf76",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"payments",
+						"5cfa5ad105a08584298cbf76"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Receipt] Get list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTIwMjZjOGRiMTgwMzZmMDA2MWUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NTk5OTU2MzAsImlhdCI6MTU1OTkwOTIzMH0.QgrZklGHNHNm0MJeoQj5CS3eMaWFTDwmdHfeDK9iHag"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"payment\": \"5cfa553a9188bc8074969939\",\n\t\"customer\": \"5cfa70dd790ec893524a2a00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/receipts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"receipts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Receipt] Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTIwMjZjOGRiMTgwMzZmMDA2MWUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NTk5OTU2MzAsImlhdCI6MTU1OTkwOTIzMH0.QgrZklGHNHNm0MJeoQj5CS3eMaWFTDwmdHfeDK9iHag"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"payment\": \"5cfa553a9188bc8074969939\",\n\t\"customer\": \"5cfa70dd790ec893524a2a00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/receipts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"receipts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Account] Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTI5MTkxODhiYzgwNzQ5Njk5MzUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NjAwMTMwMjcsImlhdCI6MTU1OTkyNjYyN30.xqMRNKDiLlDnEIORCs2HfPKyswu7uM0ZWZ4MMa2Gsds"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Tai khoan tien gui\",\n\t\"description\": \"TK TIEN GUI THEO THONG TU 200\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/accounts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"accounts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Account] Get list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTI5MTkxODhiYzgwNzQ5Njk5MzUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NjAwMTMwMjcsImlhdCI6MTU1OTkyNjYyN30.xqMRNKDiLlDnEIORCs2HfPKyswu7uM0ZWZ4MMa2Gsds"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Tai khoan tien gui\",\n\t\"description\": \"TK TIEN GUI THEO THONG TU 200\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/accounts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"accounts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Transaction] Add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTI5MTkxODhiYzgwNzQ5Njk5MzUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NjAwMTMwMjcsImlhdCI6MTU1OTkyNjYyN30.xqMRNKDiLlDnEIORCs2HfPKyswu7uM0ZWZ4MMa2Gsds"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"receipt\": \"5cfa70e7790ec893524a2a01\",\n\t\"amount\": 3000,\n\t\"fromAccount\": {\n\t\t\"id\": \"5cfa9783a9fa99aadcaaf7d5\",\n\t\t\"type\": 1\n\t},\n\t\"toAccount\": {\n\t\t\"id\": \"5cfa9778a9fa99aadcaaf7d4\",\n\t\t\"type\": 0\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/transactions/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"transactions",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Transaction] Get list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTI5MTkxODhiYzgwNzQ5Njk5MzUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NjAwMTMwMjcsImlhdCI6MTU1OTkyNjYyN30.xqMRNKDiLlDnEIORCs2HfPKyswu7uM0ZWZ4MMa2Gsds"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"receipt\": \"5cfa70e7790ec893524a2a01\",\n\t\"amount\": 3000,\n\t\"fromAccount\": {\n\t\t\"id\": \"5cfa9783a9fa99aadcaaf7d5\",\n\t\t\"type\": 1\n\t},\n\t\"toAccount\": {\n\t\t\"id\": \"5cfa9778a9fa99aadcaaf7d4\",\n\t\t\"type\": 0\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/transactions/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"transactions",
+						""
 					]
 				}
 			},
@@ -524,19 +957,19 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MzgwNTcsImlhdCI6MTU1ODQ1MTY1N30.XeMtq84J29NSJ4Yr6DGbv4fwg7R_9kpdCwAz4vJcFpo",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTJhMzkxODhiYzgwNzQ5Njk5MzYiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NTk5OTU0NjAsImlhdCI6MTU1OTkwOTA2MH0.asjVjr6RFegpwHsEbku5j-tHdGxIolPZ9k9ku_ZVLNQ",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:7777/customer/?search=TIEN",
+					"raw": "http://localhost:7777/customers/?search=TIEN",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"customer",
+						"customers",
 						""
 					],
 					"query": [
@@ -561,14 +994,14 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:7777/customer/5ce41708695f622278437e54",
+					"raw": "http://localhost:7777/customers/5ce41708695f622278437e54",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"customer",
+						"customers",
 						"5ce41708695f622278437e54"
 					]
 				}
@@ -583,7 +1016,7 @@
 					{
 						"key": "token",
 						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UzOGZmN2M5MjRmZDE1OGMwOTQzZjgiLCJleHAiOjE1NTg1MzgyNjgsImlhdCI6MTU1ODQ1MTg2OH0.ioJP8LXpIvScUIY8ma1CpJENbKouWG7VUy5oHmT9Ssw"
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTIwMjZjOGRiMTgwMzZmMDA2MWUiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NjAwMDMxMjksImlhdCI6MTU1OTkxNjcyOX0.fg-e_wdeRmh7e2sWrElRd7B7S_3xTt64TyvgC6R8GZU"
 					},
 					{
 						"key": "Content-Type",
@@ -597,14 +1030,14 @@
 					"raw": "{\n\t\"name\": \"VAN TIEN SINH\",\n\t\"phone\": \"0123456789\",\n\t\"address\": \"HCM\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:7777/customer/?",
+					"raw": "http://localhost:7777/customers/?",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"customer",
+						"customers",
 						""
 					],
 					"query": [
@@ -645,14 +1078,14 @@
 					"raw": "{\n\t\"name\": \"VAN TIEN SINH\",\n\t\"phone\": \"0123456789\",\n\t\"address\": \"HCM\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:7777/customer/5ce41708695f622278437e54?",
+					"raw": "http://localhost:7777/customers/5ce41708695f622278437e54?",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"customer",
+						"customers",
 						"5ce41708695f622278437e54"
 					],
 					"query": [
@@ -693,14 +1126,14 @@
 					"raw": "{\n\t\"name\": \"VAN TIEN SINH\",\n\t\"phone\": \"0123456789\",\n\t\"address\": \"HCM\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:7777/customer/5ce41708695f622278437e54?",
+					"raw": "http://localhost:7777/customers/5ce41708695f622278437e54?",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"customer",
+						"customers",
 						"5ce41708695f622278437e54"
 					],
 					"query": [
