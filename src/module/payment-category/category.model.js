@@ -9,7 +9,6 @@ const PaymentCategorySchema = new Schema({
     type: String,
     required: true,
   },
-
   company: {
     type: Schema.Types.ObjectId,
     ref: 'Company',
@@ -19,6 +18,8 @@ const PaymentCategorySchema = new Schema({
     type: Boolean,
     default: false,
   },
+}, {
+  timestamps: true,
 });
 
 PaymentCategorySchema.statics = {
@@ -41,6 +42,7 @@ PaymentCategorySchema.methods = {
       _id: this._id,
       name: this.name,
       detail: this.detail,
+      createdAt: this.createdAt,
     };
   },
 };
