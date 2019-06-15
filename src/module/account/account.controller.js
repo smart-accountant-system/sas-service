@@ -7,7 +7,7 @@ export async function getAccountList(req, res) {
   const skip = parseInt(req.query.skip, 0) || 0;
   const search = req.query.search;
   try {
-    const queries = (!search) ? { isRemoved: false } : { $text: { $search: search }, isRemoved: false };
+    const queries = (!search) ? { isRemoved: false, company: req.user.company } : { $text: { $search: search }, isRemoved: false, company: req.user.company };
     const accounts = await Account.list({ search, queries })
       .skip(skip)
       .limit(limit);
@@ -21,13 +21,9 @@ export async function getAccountList(req, res) {
 export async function getDetailAccount(req, res) {
   try {
     const account = await Account
-      .findOne({ _id: req.params.id, isRemoved: false });
+      .findOne({ _id: req.params.id, isRemoved: false, company: req.user.company });
     if (!account) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
-    }
-
-    if (req.user.role !== constants.ROLE.SYSTEM_ADMIN && req.user.account != account._id) {
-      return res.sendStatus(HTTPStatus.FORBIDDEN);
     }
 
     return res.status(HTTPStatus.OK).json(account);
