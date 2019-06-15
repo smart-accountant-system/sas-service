@@ -41,7 +41,14 @@ export async function getReceiptList(req, res) {
 export async function getDetailReceipt(req, res) {
   try {
     const receipt = await Receipt
-      .findOne({ _id: req.params.id, isRemoved: false, company: req.user.company });
+      .findOne({ _id: req.params.id, isRemoved: false, company: req.user.company })
+      .populate('customer')
+      .populate({
+        path: 'payment',
+        populate: {
+          path: 'category',
+        },
+      });
     if (!receipt) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
     }
