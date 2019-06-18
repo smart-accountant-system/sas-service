@@ -48,7 +48,7 @@ CustomerSchema.methods = {
       _id: this._id,
       name: this.name,
       phone: this.phone,
-      address: this.addres,
+      address: this.address,
     };
   },
 };
