@@ -18,6 +18,15 @@ export function roleNOTS(req, res, next) {
   return res.sendStatus(HTTPStatus.FORBIDDEN);
 }
 
+// NOTS: NOT ACCOUNTANT
+export function roleNOTA2(req, res, next) {
+  if (req.user.role != constants.ROLE.ACCOUNTANT) {
+    return next();
+  }
+  return res.sendStatus(HTTPStatus.FORBIDDEN);
+}
+
+
 
 export function roleAdmin(req, res, next) {
   if (!req.user.role) {
