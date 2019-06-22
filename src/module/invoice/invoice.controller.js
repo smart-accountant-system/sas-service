@@ -21,7 +21,8 @@ export async function getInvoiceList(req, res) {
         (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
           { isRemoved: false, company: req.user.company };
 
-    const invoices = await Invoice.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 });
+    const invoices = await Invoice.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
+      .populate('createdBy', '-_id username fullname');
     const total = await Invoice.count(queries);
     return res.status(HTTPStatus.OK).json({ invoices, total });
   } catch (e) {
