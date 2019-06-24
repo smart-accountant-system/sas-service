@@ -13,10 +13,10 @@ export default {
   editCompany: {
     body: {
       name: Joi.string(),
+      email: Joi.string().max(120),
     },
     options: {
       allowUnknownBody: false,
-      email: Joi.string().max(120),
     },
   },
 };
