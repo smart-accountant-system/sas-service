@@ -24,7 +24,8 @@ export async function getPaymentList(req, res) {
         (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
           { isRemoved: false, company: req.user.company };
 
-    const payments = await Payment.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 });
+    const payments = await Payment.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
+      .populate('category', '-_id name');
     const total = await Payment.count(queries);
     return res.status(HTTPStatus.OK).json({ payments, total });
   } catch (e) {
