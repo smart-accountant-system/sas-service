@@ -94,7 +94,6 @@ EmployeeSchema.methods = {
   },
 
   toJSON() {
-    const company = Company.findOne({ _id: this.company });
     return {
       _id: this._id,
       username: this.username,
@@ -103,7 +102,7 @@ EmployeeSchema.methods = {
       avatar: this.avatar,
       phone: this.phone,
       email: this.email,
-      company,
+      company: this.company,
     };
   },
 

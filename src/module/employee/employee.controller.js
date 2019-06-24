@@ -39,7 +39,9 @@ export const getEmployee = async (req, res) => {
 
 export const authEmployee = async (req, res, next) => {
   try {
-    res.status(HTTPStatus.OK).json(req.user.toAuthJSON());
+    const company = await Company.findOne({ _id: req.user.company });
+
+    res.status(HTTPStatus.OK).json({ company, ...req.user.toAuthJSON() });
     return next();
   } catch (error) {
     return res.status(HTTPStatus.BAD_REQUEST).json(error.message);
