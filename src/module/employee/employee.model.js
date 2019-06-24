@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import mongoose, { Schema } from 'mongoose';
 import { compareSync, hashSync } from 'bcrypt-nodejs';
 import constants from '../../config/constants';
+import Company from '../company/company.model';
 
 const EmployeeSchema = new Schema({
   username: {
@@ -93,6 +94,7 @@ EmployeeSchema.methods = {
   },
 
   toJSON() {
+    const company = Company.findOne({ _id: this.company });
     return {
       _id: this._id,
       username: this.username,
@@ -101,7 +103,7 @@ EmployeeSchema.methods = {
       avatar: this.avatar,
       phone: this.phone,
       email: this.email,
-      company: this.company,
+      company,
     };
   },
 
