@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import mongoose, { Schema } from 'mongoose';
 import { compareSync, hashSync } from 'bcrypt-nodejs';
 import constants from '../../config/constants';
+import Company from '../company/company.model';
 
 const EmployeeSchema = new Schema({
   username: {
