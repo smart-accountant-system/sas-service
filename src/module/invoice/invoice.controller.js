@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import HTTPStatus from 'http-status';
 import Invoice from './invoice.model';
+import Payment from '../payment/payment.model';
 
 // @Param handler:
 //   - startDate: YYYY-MM-DD
@@ -39,7 +40,12 @@ export async function getDetailInvoice(req, res) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
     }
 
-    return res.status(HTTPStatus.OK).json(invoice);
+    const queries = { isRemoved: false, invoice, company: req.user.company };
+    const payments = await Payment.find(queries).limit(50).sort({ createdAt: 1 })
+      .populate('category', '-_id name');
+    const total = await Payment.count(queries);
+
+    return res.status(HTTPStatus.OK).json({ ...invoice, payments: { payments, total } });
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
   }
