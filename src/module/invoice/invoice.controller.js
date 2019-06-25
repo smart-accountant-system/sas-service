@@ -45,7 +45,7 @@ export async function getDetailInvoice(req, res) {
       .populate('category', '-_id name');
     const total = await Payment.count(queries);
 
-    return res.status(HTTPStatus.OK).json({ ...invoice, payments: { payments, total } });
+    return res.status(HTTPStatus.OK).json({ ...invoice.toJSON(), payments: { payments, total } });
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
   }
