@@ -28,7 +28,7 @@ export async function getPaymentList(req, res) {
     const payments = await Payment.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
       .populate('category', '-_id name');
     const total = await Payment.count(queries);
-    return res.status(HTTPStatus.OK).json({ payments, total });
+    return res.status(HTTPStatus.OK).json({ invoice, payments, total });
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
   }
