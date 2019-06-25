@@ -13,16 +13,17 @@ import constants from '../../config/constants';
 export async function getPaymentList(req, res) {
   const limit = parseInt(req.query.limit, 0) || 50;
   const skip = parseInt(req.query.skip, 0) || 0;
+  const invoice = req.params.invoice;
   const startDate = req.query.startDate ? new Date(req.query.startDate) : undefined;
   const endDate = req.query.endDate ? new Date(req.query.endDate) : undefined;
   if (endDate) {
     endDate.setDate(new Date(req.query.endDate).getDate() + 1);
   }
   try {
-    const queries = (startDate && endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate, $lt: endDate } } :
-      (startDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate } } :
-        (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
-          { isRemoved: false, company: req.user.company };
+    const queries = (startDate && endDate) ? { isRemoved: false, invoice, company: req.user.company, createdAt: { $gte: startDate, $lt: endDate } } :
+      (startDate) ? { isRemoved: false, invoice, company: req.user.company, createdAt: { $gte: startDate } } :
+        (endDate) ? { isRemoved: false, invoice, company: req.user.company, createdAt: { $lt: endDate } } :
+          { isRemoved: false, invoice, company: req.user.company };
 
     const payments = await Payment.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
       .populate('category', '-_id name');
