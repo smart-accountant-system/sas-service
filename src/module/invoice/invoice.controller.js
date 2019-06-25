@@ -40,7 +40,7 @@ export async function getDetailInvoice(req, res) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
     }
 
-    const queries = { isRemoved: false, invoice, company: req.user.company };
+    const queries = { isRemoved: false, invoice: invoice._id, company: req.user.company };
     const payments = await Payment.find(queries).limit(50).sort({ createdAt: 1 })
       .populate('category', '-_id name');
     const total = await Payment.count(queries);
