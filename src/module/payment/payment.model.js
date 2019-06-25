@@ -57,7 +57,6 @@ PaymentSchema.methods = {
     return {
       _id: this._id,
       type: this.type,
-      invoice: this.invoice,
       category: this.category,
       amountMoney: this.amountMoney,
       description: this.description,
