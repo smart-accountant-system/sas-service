@@ -111,7 +111,7 @@ export async function deletePayment(req, res) {
     }
     await invoice.save();
 
-    return res.status(HTTPStatus.OK).json(payment);
+    return res.status(HTTPStatus.OK).json({ invoice: invoice._id, payment: payment.toJSON() });
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
   }
