@@ -61,6 +61,7 @@ PaymentSchema.methods = {
       amountMoney: this.amountMoney,
       description: this.description,
       createdAt: this.createdAt,
+      invoice: this.invoice,
     };
   },
 };
