@@ -38,7 +38,7 @@ export async function getDetailPayment(req, res) {
   try {
     const payment = await Payment
       .findOne({ _id: req.params.id, isRemoved: false, company: req.user.company })
-      .populate('invoice category company createdBy');
+      .populate('invoice category');
     if (!payment) {
       return res.sendStatus(HTTPStatus.NOT_FOUND);
     }
@@ -80,7 +80,7 @@ export async function createPayment(req, res) {
     }
     await invoice.save();
 
-    return res.status(HTTPStatus.CREATED).json({ invoice: invoice._id, payment });
+    return res.status(HTTPStatus.CREATED).json({ invoice: invoice._id, payment: { ...payment, category: { name: category.name } } });
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
   }
