@@ -80,7 +80,7 @@ export async function createPayment(req, res) {
     }
     await invoice.save();
 
-    return res.status(HTTPStatus.CREATED).json({ invoice: invoice._id, payment: { ...payment, category: { name: category.name } } });
+    return res.status(HTTPStatus.CREATED).json({ invoice: invoice._id, payment: { ...payment.toJSON(), category: { name: category.name } } });
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
   }
