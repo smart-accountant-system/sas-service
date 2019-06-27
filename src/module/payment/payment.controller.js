@@ -9,8 +9,9 @@ import constants from '../../config/constants';
 // @Param handler:
 //   - startDate: YYYY-MM-DD
 //   - endDate: YYYY-MM-DD
+//   - invoice: _id
 //   ---
-//   Return: list from [startDate; endDate]
+//   Return: list from [startDate; endDate] of invoice
 export async function getPaymentList(req, res) {
   const limit = parseInt(req.query.limit, 0) || 50;
   const skip = parseInt(req.query.skip, 0) || 0;
