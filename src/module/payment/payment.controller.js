@@ -26,7 +26,7 @@ export async function getPaymentList(req, res) {
       (startDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate } } :
         (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
           { isRemoved: false, company: req.user.company };
-    queries = invoice ? { ...queries, invoice } : { queries, receipt: undefined };
+    queries = invoice ? { ...queries, invoice } : { ...queries, receipt: undefined };
     const payments = await Payment.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
       .populate('category', '-_id name');
     const total = await Payment.count(queries);
