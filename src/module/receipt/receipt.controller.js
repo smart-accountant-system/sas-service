@@ -65,6 +65,8 @@ export async function createReceipt(req, res) {
     const payment = await Payment.findOne({ _id: req.body.payment, isRemoved: false });
     if (!payment) {
       return res.sendStatus(HTTPStatus.BAD_REQUEST);
+    } else if (payment.receipt) {
+      return res.sendStatus(HTTPStatus.BAD_REQUEST);
     }
 
     const customer = await Customer.findOne({ _id: req.body.customer, isRemoved: false });
@@ -83,6 +85,10 @@ export async function createReceipt(req, res) {
         },
       });
 
+    payment.receipt = _id;
+    await payment.save();
+
+
     return res.status(HTTPStatus.CREATED).json(receipt);
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
@@ -96,6 +102,11 @@ export async function deleteReceipt(req, res) {
     }
     receipt.isRemoved = true;
     await receipt.save();
+
+    const payment = await Payment.findById(receipt.payment);
+    payment.receipt = undefined;
+    await payment.save();
+
     return res.status(HTTPStatus.OK).json(receipt);
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
