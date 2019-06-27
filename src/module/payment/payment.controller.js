@@ -22,11 +22,11 @@ export async function getPaymentList(req, res) {
     endDate.setDate(new Date(req.query.endDate).getDate() + 1);
   }
   try {
-    let queries = (startDate && endDate) ? { isRemoved: false, receipt: undefined, company: req.user.company, createdAt: { $gte: startDate, $lt: endDate } } :
-      (startDate) ? { isRemoved: false, receipt: undefined, company: req.user.company, createdAt: { $gte: startDate } } :
-        (endDate) ? { isRemoved: false, receipt: undefined, company: req.user.company, createdAt: { $lt: endDate } } :
-          { isRemoved: false, receipt: undefined, company: req.user.company };
-    queries = invoice ? { ...queries, invoice } : queries;
+    let queries = (startDate && endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate, $lt: endDate } } :
+      (startDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate } } :
+        (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
+          { isRemoved: false, company: req.user.company };
+    queries = invoice ? { ...queries, invoice } : { queries, receipt: undefined };
     const payments = await Payment.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
       .populate('category', '-_id name');
     const total = await Payment.count(queries);
