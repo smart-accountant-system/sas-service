@@ -32,7 +32,7 @@ const PaymentSchema = new Schema({
   },
   receipt: {
     type: Schema.Types.ObjectId,
-    ref: 'Company',
+    ref: 'Receipt',
   },
   company: {
     type: Schema.Types.ObjectId,
@@ -66,6 +66,7 @@ PaymentSchema.methods = {
       description: this.description,
       createdAt: this.createdAt,
       invoice: this.invoice,
+      receipt: this.receipt,
     };
   },
 };
