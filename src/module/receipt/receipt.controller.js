@@ -74,7 +74,15 @@ export async function createReceipt(req, res) {
     // ---------------------------------------
 
 
-    const receipt = await Receipt.createReceipt(req.body, req.user);
+    const { _id } = await Receipt.createReceipt(req.body, req.user);
+    const receipt = await Receipt.findById(_id).populate('customer')
+      .populate({
+        path: 'payment',
+        populate: {
+          path: 'category',
+        },
+      });
+
     return res.status(HTTPStatus.CREATED).json(receipt);
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
