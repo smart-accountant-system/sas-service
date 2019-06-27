@@ -89,9 +89,13 @@ export async function createTransaction(req, res) {
     }
     await toAcc.save();
 
+    const { _id } = transaction;
+    const resTransaction = Transaction.findById(_id)
+      .populate('fromAccount.id', 'name')
+      .populate('toAccount.id', 'name')
+      .populate('checkedBy', 'fullname');
 
-
-    return res.status(HTTPStatus.CREATED).json(transaction);
+    return res.status(HTTPStatus.CREATED).json(resTransaction);
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
   }
