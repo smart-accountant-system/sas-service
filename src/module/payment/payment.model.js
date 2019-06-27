@@ -30,6 +30,10 @@ const PaymentSchema = new Schema({
     type: String,
     required: true,
   },
+  receipt: {
+    type: Schema.Types.ObjectId,
+    ref: 'Company',
+  },
   company: {
     type: Schema.Types.ObjectId,
     ref: 'Company',

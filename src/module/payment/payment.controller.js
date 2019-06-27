@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-nested-ternary */
 import HTTPStatus from 'http-status';
 import Payment from './payment.model';
@@ -13,47 +14,18 @@ import constants from '../../config/constants';
 export async function getPaymentList(req, res) {
   const limit = parseInt(req.query.limit, 0) || 50;
   const skip = parseInt(req.query.skip, 0) || 0;
+  const invoice = req.query.invoice;
   const startDate = req.query.startDate ? new Date(req.query.startDate) : undefined;
   const endDate = req.query.endDate ? new Date(req.query.endDate) : undefined;
   if (endDate) {
     endDate.setDate(new Date(req.query.endDate).getDate() + 1);
   }
   try {
-    const queries = (startDate && endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate, $lt: endDate } } :
+    let queries = (startDate && endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate, $lt: endDate } } :
       (startDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate } } :
         (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
           { isRemoved: false, company: req.user.company };
-
-    const payments = await Payment.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
-      .populate('category', '-_id name');
-    const total = await Payment.count(queries);
-    return res.status(HTTPStatus.OK).json({ payments, total });
-  } catch (e) {
-    return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
-  }
-}
-
-
-// @Param handler:
-//   - startDate: YYYY-MM-DD
-//   - endDate: YYYY-MM-DD
-//   ---
-//   Return: list from [startDate; endDate]
-export async function getPaymentListForInvoice(req, res) {
-  const limit = parseInt(req.query.limit, 0) || 50;
-  const skip = parseInt(req.query.skip, 0) || 0;
-  const invoice = req.params.invoice;
-  const startDate = req.query.startDate ? new Date(req.query.startDate) : undefined;
-  const endDate = req.query.endDate ? new Date(req.query.endDate) : undefined;
-  if (endDate) {
-    endDate.setDate(new Date(req.query.endDate).getDate() + 1);
-  }
-  try {
-    const queries = (startDate && endDate) ? { isRemoved: false, invoice, company: req.user.company, createdAt: { $gte: startDate, $lt: endDate } } :
-      (startDate) ? { isRemoved: false, invoice, company: req.user.company, createdAt: { $gte: startDate } } :
-        (endDate) ? { isRemoved: false, invoice, company: req.user.company, createdAt: { $lt: endDate } } :
-          { isRemoved: false, invoice, company: req.user.company };
-
+    queries = invoice ? { ...queries, invoice } : queries;
     const payments = await Payment.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
       .populate('category', '-_id name');
     const total = await Payment.count(queries);
