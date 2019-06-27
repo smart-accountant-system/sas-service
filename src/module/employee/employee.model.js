@@ -80,7 +80,7 @@ EmployeeSchema.methods = {
   generateJWT(lifespan) {
     const today = new Date();
     const expirationDate = new Date(today);
-    expirationDate.setSeconds(today.getSeconds() + 30);
+    expirationDate.setDate(today.getDate() + lifespan);
 
     return jwt.sign(
       {
