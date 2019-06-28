@@ -7,22 +7,27 @@ import Customer from '../customer/customer.model';
 // @Param handler:
 //   - startDate: YYYY-MM-DD
 //   - endDate: YYYY-MM-DD
+//   - status: 
+//        0: require status == false 
+//        1: require status == true
+//    other: no status
 //   ---
 //   Return: list from [startDate; endDate]
 export async function getReceiptList(req, res) {
   const limit = parseInt(req.query.limit, 0) || 50;
   const skip = parseInt(req.query.skip, 0) || 0;
+  const status = parseInt(req.query.status, 0) || -1;
   const startDate = req.query.startDate ? new Date(req.query.startDate) : undefined;
   const endDate = req.query.endDate ? new Date(req.query.endDate) : undefined;
   if (endDate) {
     endDate.setDate(new Date(req.query.endDate).getDate() + 1);
   }
   try {
-    const queries = (startDate && endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate, $lt: endDate } } :
+    let queries = (startDate && endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate, $lt: endDate } } :
       (startDate) ? { isRemoved: false, company: req.user.company, createdAt: { $gte: startDate } } :
         (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
           { isRemoved: false, company: req.user.company };
-
+    queries = status == 0 ? { ...queries, status: false } : status == 1 ? { ...queries, status: true } : queries; 
     const receipts = await Receipt.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
       .populate('customer')
       .populate({

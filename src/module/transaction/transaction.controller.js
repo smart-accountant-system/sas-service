@@ -53,8 +53,12 @@ export async function getDetailTransaction(req, res) {
 export async function createTransaction(req, res) {
   try {
     // ------------- CHECKING REQ-------------
-    const receipt = await Receipt.findOne({ _id: req.body.receipt, isRemoved: false });
-    if (!receipt) {
+    const receipt = await Receipt.findOne({ _id: req.body.receipt, isRemoved: false }).populate('payment', '-_id amountMoney');
+    if (!receipt || receipt.status == constants.RECEIPT_STATUS.DONE) {
+      return res.sendStatus(HTTPStatus.BAD_REQUEST);
+    }
+
+    if (req.body.fromAccount.id == req.body.toAccount.id) {
       return res.sendStatus(HTTPStatus.BAD_REQUEST);
     }
 
@@ -67,9 +71,14 @@ export async function createTransaction(req, res) {
     if (!toAcc) {
       return res.sendStatus(HTTPStatus.BAD_REQUEST);
     }
+
+    if (req.body.fromAccount.type + req.body.toAccount.type !== 1) {
+      return res.sendStatus(HTTPStatus.BAD_REQUEST);
+    }
+
     // ---------------------------------------
 
-    const transaction = await Transaction.createTransaction(req.body, req.user);
+    const transaction = await Transaction.createTransaction({ ...req.body, amount: receipt.payment.amountMoney }, req.user);
 
     receipt.status = constants.RECEIPT_STATUS.DONE;
     await receipt.save();
@@ -89,13 +98,16 @@ export async function createTransaction(req, res) {
     }
     await toAcc.save();
 
-    const { _id } = transaction;
-    const resTransaction = Transaction.findById(_id)
+    transaction
       .populate('fromAccount.id', 'name')
       .populate('toAccount.id', 'name')
       .populate('checkedBy', 'fullname');
 
-    return res.status(HTTPStatus.CREATED).json(resTransaction);
+    return res.status(HTTPStatus.CREATED).json({ 
+      ...transaction.toJSON(), 
+      fromAccount: { name: fromAcc.name },
+      toAccount: { name: toAcc.name },
+      checkBy: { fullname: req.user.fullname } });
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
   }
