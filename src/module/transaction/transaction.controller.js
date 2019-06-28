@@ -105,9 +105,9 @@ export async function createTransaction(req, res) {
 
     return res.status(HTTPStatus.CREATED).json({ 
       ...transaction.toJSON(), 
-      fromAccount: { name: fromAcc.name },
-      toAccount: { name: toAcc.name },
-      checkBy: { fullname: req.user.fullname } });
+      fromAccount: { id: { _id: fromAcc._id, name: fromAcc.name }, type: transaction.fromAccount.type },
+      toAccount: { id: { _id: toAcc._id, name: toAcc.name }, type: transaction.toAccount.type },
+      checkedBy: { _id: req.user._id, fullname: req.user.fullname } });
   } catch (e) {
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
   }
