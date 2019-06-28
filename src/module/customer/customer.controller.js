@@ -34,10 +34,7 @@ export async function getDetailCustomer(req, res) {
 
 export async function createCustomer(req, res) {
   try {
-    console.log(req.body);
-    
     const customer = await Customer.createCustomer(req.body, req.user);
-    console.log(customer);
     
     return res.status(HTTPStatus.CREATED).json(customer);
   } catch (e) {
