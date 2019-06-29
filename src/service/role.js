@@ -27,6 +27,13 @@ export function roleNOTA2(req, res, next) {
 }
 
 
+export function roleNOTO(req, res, next) {
+  if (req.user._id !== req.params.id) {
+    return next();
+  }
+  return res.sendStatus(HTTPStatus.FORBIDDEN);
+}
+
 
 export function roleAdmin(req, res, next) {
   if (!req.user.role) {
@@ -56,6 +63,13 @@ export function roleStaff(req, res, next) {
   return res.sendStatus(HTTPStatus.FORBIDDEN);
 }
   
+
+export function roleOwn(req, res, next) {
+  if (req.user._id == req.params.id) {
+    return next();
+  }
+  return res.sendStatus(HTTPStatus.FORBIDDEN);
+}
 
 // AM: Admin or manager
 export function roleAM(req, res, next) {
