@@ -25,12 +25,19 @@ export default {
   editProfile: {
     body: {
       username: Joi.string().min(3).max(120),
-      password: Joi.string().min(6).max(120),
       fullname: Joi.string().min(3).max(80),
       role: Joi.number().min(1).max(3),
       email: Joi.string().max(120),
       phone: Joi.string().max(10),
       avatar: Joi.string(),
+    },
+    options: {
+      allowUnknownBody: false,
+    },
+  },
+  editPassword: {
+    body: {
+      password: Joi.string().min(6).max(120).required(),
     },
     options: {
       allowUnknownBody: false,
