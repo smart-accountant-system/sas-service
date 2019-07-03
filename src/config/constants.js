@@ -1,11 +1,15 @@
 const devConfig = {
   MONGO_URL: 'mongodb://localhost:27017/SAS-service-dev',
   JWT_SECRET: 'lam-choi-cho-vui-luc-ranh',
+  EMAIL_US: '',
+  EMAIL_PW: '',
 };
 
 const prodConfig = {
   MONGO_URL: 'mongodb://sasdb:nhatquang98@ds159036.mlab.com:59036/sasdb',
   JWT_SECRET: 'sai-co-pat',
+  EMAIL_US: '',
+  EMAIL_PW: '',
 };
 
 const defaultConfig = {
