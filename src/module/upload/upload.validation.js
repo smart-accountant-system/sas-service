@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 export default {
   upload: {
-    data: {
+    body: {
       file: Joi.binary(),
     },
   },
