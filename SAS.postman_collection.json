@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9103ddc3-5d8c-4b34-a9a4-ed97c27f2ea8",
+		"_postman_id": "3dc5fadf-a729-42c7-aa82-62da5399b549",
 		"name": "SAS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -49,7 +49,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"123456\"\n}"
+					"raw": "{\n\t\"username\": \"thor\",\n\t\"password\": \"123456\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:7777/admins/login",
@@ -187,7 +187,7 @@
 					"raw": "{\n\t\"username\": \"manager\",\n\t\"password\": \"123456\",\n\t\"email\": \"manager@company.com\",\n\t\"fullname\": \"manager\",\n\t\"phone\": \"0947857301\",\n\t\"role\": 3,\n\t\"company\": \"5cfa51f86c8db18036f0061d\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:7777/employees/",
+					"raw": "http://localhost:7777/employees/?",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1147,6 +1147,202 @@
 							"value": "2019-05-21",
 							"disabled": true
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Upload] Get all file",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2Y1NDE5OGU4OGFjMzIwYzAwMTRlMWYiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE1NjIyMTgwNTUsImlhdCI6MTU2MjEzMTY1NX0.pVbfPAk5rvZLvCGtg24keE3VpvsKYQMgDDjP_hxN1DQ"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:7777/upload/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"upload",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Upload] Get a file",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzFiNDcwNGVkNDgzMjNmZTBkMmM1ZTgiLCJleHAiOjE1NTA0NzU1NTIsImlhdCI6MTU0NTI5MTU1M30.Vb691YoJ_q6j65zMKWtYhUzjgcV9uioibVlQb36DlWA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/upload/THUMB-SAS-1562132833930-IMG_6256.jpg",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"upload",
+						"THUMB-SAS-1562132833930-IMG_6256.jpg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Upload] Generate",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2Y1NDE5OGU4OGFjMzIwYzAwMTRlMWYiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE1NjIyMTgwNTUsImlhdCI6MTU2MjEzMTY1NX0.pVbfPAk5rvZLvCGtg24keE3VpvsKYQMgDDjP_hxN1DQ"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/upload/thumbnail/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"upload",
+						"thumbnail",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Upload] Upload file",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2Y1NDE5OGU4OGFjMzIwYzAwMTRlMWYiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE1NjIyMTgwNTUsImlhdCI6MTU2MjEzMTY1NX0.pVbfPAk5rvZLvCGtg24keE3VpvsKYQMgDDjP_hxN1DQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/tholx/Desktop/IMG_6247.jpg"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:7777/upload/avatar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"upload",
+						"avatar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Upload] Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YzFiNDcwNGVkNDgzMjNmZTBkMmM1ZTgiLCJleHAiOjE1NTA0NzU1NTIsImlhdCI6MTU0NTI5MTU1M30.Vb691YoJ_q6j65zMKWtYhUzjgcV9uioibVlQb36DlWA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/upload/NEMTHC-1545327976182-script",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"upload",
+						"NEMTHC-1545327976182-script"
 					]
 				}
 			},
