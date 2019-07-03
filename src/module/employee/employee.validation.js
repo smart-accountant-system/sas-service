@@ -7,7 +7,7 @@ export default {
       password: Joi.string().min(6).max(120).required(),
       fullname: Joi.string().min(3).max(80).required(),
       role: Joi.number().min(1).max(3).required(),
-      email: Joi.string().max(120),
+      email: Joi.string().max(120).required(),
       phone: Joi.string().max(10).required(),
       avatar: Joi.string(),
       company: Joi.string(),

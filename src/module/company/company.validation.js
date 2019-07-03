@@ -4,7 +4,7 @@ export default {
   createCompany: {
     body: {
       name: Joi.string().required(),
-      email: Joi.string().max(120),
+      email: Joi.string().max(120).required(),
     },
     options: {
       allowUnknownBody: false,

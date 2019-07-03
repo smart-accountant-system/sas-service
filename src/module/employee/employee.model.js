@@ -47,6 +47,7 @@ const EmployeeSchema = new Schema({
     type: String,
     trim: true,
     unique: true,
+    required: true,
     maxlength: [120, 'Email must equal or shorter than 120'],
   },
   company: {
@@ -54,6 +55,10 @@ const EmployeeSchema = new Schema({
     ref: 'Company',
   },
   isRemoved: {
+    type: Boolean,
+    default: false,
+  },
+  isConfirmed: {
     type: Boolean,
     default: false,
   },

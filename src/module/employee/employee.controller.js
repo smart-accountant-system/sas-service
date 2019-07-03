@@ -1,7 +1,10 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-nested-ternary */
 import HTTPStatus from 'http-status';
 import Employee from './employee.model';
 import Company from '../company/company.model';
+import { transporter, getConfirmEmployeeMail } from '../../service/mailer';
+import constants from '../../config/constants';
 
 export const getEmployeeList = async (req, res) => {
   const limit = parseInt(req.query.limit, 10) || 50;
@@ -37,6 +40,36 @@ export const getEmployee = async (req, res) => {
   }
 };
 
+
+export const sendConfirmMail = async (req, res) => {
+  try {
+    const employee = await Employee.findOne({ username: req.params.username, isRemoved: false, isConfirmed: false });
+    if (!employee) {
+      return res.sendStatus(HTTPStatus.NOT_FOUND);
+    }
+    
+    transporter.sendMail(
+      getConfirmEmployeeMail(employee.toJSON(), employee.generateJWT(constants.MAIL_TOKEN_LIFESPAN))
+    );
+
+    return res.sendStatus(HTTPStatus.OK);
+  } catch (error) {
+    return res.status(HTTPStatus.BAD_REQUEST).json(error.message);
+  }
+};
+
+
+
+export const confirmEmployee = async (req, res) => {
+  try {
+    req.user.isConfirmed = true;
+    await req.user.save();
+    return res.sendStatus(HTTPStatus.OK);
+  } catch (error) {
+    return res.status(HTTPStatus.BAD_REQUEST).json(error.message);
+  }
+};
+
 export const authEmployee = async (req, res, next) => {
   try {
     const company = await Company.findOne({ _id: req.user.company });
@@ -60,6 +93,11 @@ export const createEmployee = async (req, res) => {
     }
 
     const employee = await Employee.create({ ...req.body, company: company._id });
+    
+    transporter.sendMail(
+      getConfirmEmployeeMail(employee.toJSON(), employee.generateJWT(constants.MAIL_TOKEN_LIFESPAN))
+    );
+
     return res.status(HTTPStatus.CREATED).json(employee.toJSON());
   } catch (error) {
     return res.status(HTTPStatus.BAD_REQUEST).json(error.message);

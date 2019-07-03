@@ -9,7 +9,12 @@ const routes = new Router();
 
 routes.get('/', authJwt, roleAdmin, companyController.getCompanyList);
 routes.get('/:id', authJwt, companyController.getDetailCompany);
+
+routes.get('/confirm/resend-email/:email', companyController.sendConfirmMail);
+routes.get('/confirm/:token', authJwt, companyController.confirmCompany);
+
 routes.post('/', authJwt, roleAdmin, validate(companyValidation.createCompany), companyController.createCompany);
+
 routes.patch('/:id', authJwt, roleAdmin, validate(companyValidation.editCompany), companyController.updateCompany);
 routes.delete('/:id', authJwt, roleAdmin, companyController.deleteCompany);
 
