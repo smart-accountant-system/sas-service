@@ -67,7 +67,7 @@ export async function getListFile(req, res) {
 export async function upload(req, res) {
   try {
     if (!req.file) {
-      return res.sendStatus(HTTPStatus.BAD_REQUEST);
+      throw new Error('File not found!');
     }
     if (req.file.mimetype.includes('image')) {
       const thumbPath = `${path.join('upload_storage')}/THUMB-${req.file.filename}`;
@@ -86,7 +86,7 @@ export async function upload(req, res) {
       });
       return res.status(HTTPStatus.OK).json(uploaded);
     }
-    return res.status(HTTPStatus.BAD_REQUEST);
+    throw new Error('Not image!');
   } catch (e) {
     console.error(e);
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
