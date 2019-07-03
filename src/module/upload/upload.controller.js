@@ -88,6 +88,7 @@ export async function upload(req, res) {
     }
     return res.status(HTTPStatus.BAD_REQUEST);
   } catch (e) {
+    console.error(e);
     return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
   }
 }
