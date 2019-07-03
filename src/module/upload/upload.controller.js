@@ -81,7 +81,7 @@ export async function upload(req, res) {
 
       const uploaded = await Upload.create({
         ...req.file,
-        thumbPath,
+        thumbName: `THUMB-${req.file.filename}`,
         user: req.user._id,
       });
       return res.status(HTTPStatus.OK).json(uploaded);
