@@ -3,7 +3,7 @@
 import HTTPStatus from 'http-status';
 import Employee from './employee.model';
 import Company from '../company/company.model';
-import { transporter, getConfirmEmployeeMail } from '../../service/mailer';
+import { transporter, getConfirmEmployeeMail, getResetPasswordMail } from '../../service/mailer';
 import constants from '../../config/constants';
 
 export const getEmployeeList = async (req, res) => {
@@ -70,6 +70,22 @@ export const confirmEmployee = async (req, res) => {
   }
 };
 
+export const sendResetPasswordMail = async (req, res) => {
+  try {
+    const employee = await Employee.findOne({ username: req.params.username, isRemoved: false });
+    if (!employee) {
+      return res.sendStatus(HTTPStatus.NOT_FOUND);
+    }
+    transporter.sendMail(
+      getResetPasswordMail(employee.toJSON(), employee.generateJWT(constants.MAIL_TOKEN_LIFESPAN))
+    );
+    return res.sendStatus(HTTPStatus.OK);
+  } catch (error) {
+    return res.status(HTTPStatus.BAD_REQUEST).json(error.message);
+  }
+};
+
+
 export const authEmployee = async (req, res, next) => {
   try {
     const company = await Company.findOne({ _id: req.user.company });
@@ -104,11 +120,22 @@ export const createEmployee = async (req, res) => {
   }
 };
 
+export const resetPassword = async (req, res) => {
+  try {
+    const employee = await Employee.findOne({ _id: req.user._id, isRemoved: false });
+    employee.password = req.body.password;
+    await employee.save();
+    return res.status(HTTPStatus.OK).json(employee.toJSON());
+  } catch (e) {
+    return res.status(HTTPStatus.BAD_REQUEST).json(e.message);
+  }
+};
+
 export const updateEmployee = async (req, res) => {
   try {
     const employee = await Employee.findOne({ _id: req.params.id, isRemoved: false });
     if (!employee) {
-      throw new Error('Not found');
+      return res.sendStatus(HTTPStatus.NOT_FOUND);
     }
 
     if (req.user.role == employee.role && req.user.createdAt < employee.createdAt) {
