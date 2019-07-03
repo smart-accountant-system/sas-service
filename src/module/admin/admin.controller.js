@@ -27,15 +27,6 @@ export const getAdmin = async (req, res) => {
   }
 };
 
-export const authAdmin = async (req, res, next) => {
-  try {
-    res.status(HTTPStatus.OK).json(req.user.toAuthJSON());
-    return next();
-  } catch (error) {
-    return res.status(HTTPStatus.BAD_REQUEST).json(error.message);
-  }
-};
-
 export const createAdmin = async (req, res) => {
   try {
     const admin = await Admin.create(req.body);

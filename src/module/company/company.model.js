@@ -1,4 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
+import jwt from 'jsonwebtoken';
+import constants from '../../config/constants';
 
 const CompanySchema = new Schema({
   name: {
@@ -11,28 +13,22 @@ const CompanySchema = new Schema({
     type: String,
     trim: true,
     unique: true,
+    required: true,
     maxlength: [120, 'Email must equal or shorter than 120'],
+  },
+  isConfirmed: {
+    type: Boolean,
+    default: false,
   },
   isRemoved: {
     type: Boolean,
     default: false,
-  },
-  createdBy: {
-    type: Schema.Types.ObjectId,
-    ref: 'Admin',
-    required: true,
   },
 }, {
   timestamps: true,
 });
 
 CompanySchema.statics = {
-  createCompany(args, userID) {
-    return this.create({
-      ...args,
-      createdBy: userID,
-    });
-  },
   list({ search, queries } = {}) {
     return search ?
       this.find(queries, { score: { $meta: 'textScore' } }).sort({ score: { $meta: 'textScore' } }) :
@@ -41,12 +37,27 @@ CompanySchema.statics = {
 };
 
 CompanySchema.methods = {
+  
+  generateJWT(lifespan) {
+    const today = new Date();
+    const expirationDate = new Date(today);
+    expirationDate.setDate(today.getDate() + lifespan);
+
+    return jwt.sign(
+      {
+        _id: this._id,
+        role: 'company',
+        exp: parseInt(expirationDate.getTime() / 1000, 10),
+      },
+      constants.JWT_SECRET,
+    );
+  },
+
   toJSON() {
     return {
       _id: this._id,
       name: this.name,
       email: this.email,
-      createdBy: this.createdBy,
       createdAt: this.createdAt,
     };
   },
