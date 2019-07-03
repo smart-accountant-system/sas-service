@@ -11,7 +11,7 @@ const UploadSchema = new Schema({
   mimetype: String,
   size: Number,
   path: String,
-  thumbPath: String,
+  thumbName: String,
   user: {
     type: Schema.Types.ObjectId,
   },
