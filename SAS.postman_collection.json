@@ -80,7 +80,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": \"accountant\",\n\t\"password\": \"123456\"\n}"
+					"raw": "{\n\t\"username\": \"manager\",\n\t\"password\": \"123456\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:7777/employees/login",
@@ -109,26 +109,120 @@
 					},
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTZlYTQwMGZiZTIyNzQxMjJkZTQiLCJleHAiOjE1NTgyMjgzODEsImlhdCI6MTU1ODE0MTk4MX0.URGbeQ1HjON4cBNYHJAUAytEKAuhSCjqh8l2tIkiykc",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2Y1NDE5OGU4OGFjMzIwYzAwMTRlMWYiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE1NjIyMzM4NDUsImlhdCI6MTU2MjE0NzQ0NX0.a7_t33s109vffopfjWsC3ftpQ-JH2xYpV8ZnbrYZD38",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:7777/user/?search=tho",
+					"raw": "http://localhost:7777/employees/?search=",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "7777",
 					"path": [
-						"user",
+						"employees",
 						""
 					],
 					"query": [
 						{
 							"key": "search",
-							"value": "tho"
+							"value": ""
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Emloyee] Resend email",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg1MTg2MjQsImlhdCI6MTU1ODQzMjIyNH0.q_ck9xXwq-WJYbgzUateLjo7kYnrtLxVoUdWPTtoovI"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/employees/confirm/resend-email/manager",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"employees",
+						"confirm",
+						"resend-email",
+						"manager"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Emloyee] Send rspw",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg1MTg2MjQsImlhdCI6MTU1ODQzMjIyNH0.q_ck9xXwq-WJYbgzUateLjo7kYnrtLxVoUdWPTtoovI"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/employees/rspw/send-email/manager",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"employees",
+						"rspw",
+						"send-email",
+						"manager"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Emloyee] Reset password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg1MTg2MjQsImlhdCI6MTU1ODQzMjIyNH0.q_ck9xXwq-WJYbgzUateLjo7kYnrtLxVoUdWPTtoovI",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/employees/rspw/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDFjOTFmMTY0NDEzMTA0ZGM1ZmI0YWYiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NjI0MTY4ODAsImlhdCI6MTU2MjE1NzY4MH0.Kdkqfoh7R4WOtOGvytr8QV6Cvec5-97RsgVZPxof09k",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"employees",
+						"rspw",
+						"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDFjOTFmMTY0NDEzMTA0ZGM1ZmI0YWYiLCJyb2xlIjoiZW1wbG95ZWUiLCJleHAiOjE1NjI0MTY4ODAsImlhdCI6MTU2MjE1NzY4MH0.Kdkqfoh7R4WOtOGvytr8QV6Cvec5-97RsgVZPxof09k"
 					]
 				}
 			},
@@ -283,12 +377,12 @@
 				"header": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg0Mzk4NDAsImlhdCI6MTU1ODM1MzQ0MH0.Ex72Sv-Rmw7H9U6QctL3nrSVYMeqmd9FlTsS4zw8EJU",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2Y1NDE5OGU4OGFjMzIwYzAwMTRlMWYiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE1NjIyMzM4NDUsImlhdCI6MTU2MjE0NzQ0NX0.a7_t33s109vffopfjWsC3ftpQ-JH2xYpV8ZnbrYZD38",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:7777/companies/?search=",
+					"raw": "http://localhost:7777/companies/?search=BBBaa",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -301,7 +395,7 @@
 					"query": [
 						{
 							"key": "search",
-							"value": ""
+							"value": "BBBaa"
 						}
 					]
 				}
@@ -329,6 +423,34 @@
 					"path": [
 						"companies",
 						"5ce298743e2396169c442b93"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Company] Resend email",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg1MTg2MjQsImlhdCI6MTU1ODQzMjIyNH0.q_ck9xXwq-WJYbgzUateLjo7kYnrtLxVoUdWPTtoovI"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/companies/confirm/resend-email/ducthotran2010@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"companies",
+						"confirm",
+						"resend-email",
+						"ducthotran2010@gmail.com"
 					]
 				}
 			},
@@ -365,6 +487,80 @@
 					"path": [
 						"companies",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Company] Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTAyNmNiMTg0NjdmNGI0NTkyMmMiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE1NTk5OTQ4MDIsImlhdCI6MTU1OTkwODQwMn0.kmNtAT-JVjWRONwbruvAauwsbjQYBHz_yXaAHJNu4Fs",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Công ty DUKETHOR\",\n\t\"email\": \"tholxag123vn2010@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/companies/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"companies",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Company] Resend email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2ZhNTAyNmNiMTg0NjdmNGI0NTkyMmMiLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE1NTk5OTQ4MDIsImlhdCI6MTU1OTkwODQwMn0.kmNtAT-JVjWRONwbruvAauwsbjQYBHz_yXaAHJNu4Fs",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Công ty DUKETHOR\",\n\t\"email\": \"tholxag123vn2010@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/companies/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"companies",
+						"register"
 					]
 				}
 			},
@@ -1343,6 +1539,65 @@
 					"path": [
 						"upload",
 						"NEMTHC-1545327976182-script"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Register] Do register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"company\": {\n\t\t\"name\": \"Công ty trách nhiệm có hạn BBBaa\",\n\t\t\"email\": \"ducthotran2010@gmail.com\"\n\t},\n\t\"employee\": {\n\t\t\"username\": \"manager\",\n\t\t\"password\": \"123456\",\n\t\t\"email\": \"ducthotran2010@gmail.com\",\n\t\t\"fullname\": \"manager of BBBa\",\n\t\t\"phone\": \"0947857301\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7777/register/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Company] Resend email Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2RlZTBkODU2MjY2ODJhNjRiNGZiY2IiLCJleHAiOjE1NTg1MTg2MjQsImlhdCI6MTU1ODQzMjIyNH0.q_ck9xXwq-WJYbgzUateLjo7kYnrtLxVoUdWPTtoovI"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:7777/companies/confirm/resend-email/ducthotran2010@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7777",
+					"path": [
+						"companies",
+						"confirm",
+						"resend-email",
+						"ducthotran2010@gmail.com"
 					]
 				}
 			},
