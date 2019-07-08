@@ -24,8 +24,7 @@ const AdminSchema = new Schema({
     maxlength: [80, 'Fullname must equal or shorter than 80'],
   },
   avatar: {
-    trim: true,
-    type: String,
+    type: Buffer,
   },
   phone: {
     type: String,
