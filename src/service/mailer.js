@@ -53,5 +53,5 @@ export const getResetPasswordMail = ({ email }, token) => ({
   from: constants.EMAIL_US,
   to: email,
   subject: '[Smart Accountant System] Reset password for employee',
-  html: `Please click  <a href="${constant.PUBLISH_EXPO_LINK + token}">here</a> to reset your password.`,
+  html: `Please click  <a href="${constants.PUBLISH_EXPO_LINK + token}">here</a> to reset your password.`,
 });
