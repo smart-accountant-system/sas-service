@@ -5,6 +5,7 @@ const devConfig = {
   EMAIL_PW: 'Gnauqt@hn98',
   COMPANY_CONFIRM_LINK: 'http://localhost:7777/companies/confirm/',
   EMLOYEE_CONFIRM_LINK: 'http://localhost:7777/employees/confirm/',
+  PUBLISH_EXPO_LINK: 'exp://exp.host/@nhatquangsin/smart-accountant-system-native/--/',
 };
 
 const prodConfig = {
@@ -14,6 +15,7 @@ const prodConfig = {
   EMAIL_PW: 'Gnauqt@hn98',
   COMPANY_CONFIRM_LINK: 'https://smart-accountant-system.herokuapp.com/companies/confirm/',
   EMLOYEE_CONFIRM_LINK: 'https://smart-accountant-system.herokuapp.com/employees/confirm/',
+  PUBLISH_EXPO_LINK: 'exp://exp.host/@nhatquangsin/smart-accountant-system-native/--/',
 };
 
 const defaultConfig = {
