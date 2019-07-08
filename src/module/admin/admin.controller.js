@@ -1,5 +1,38 @@
 import HTTPStatus from 'http-status';
+import sharp from 'sharp';
 import Admin from './admin.model';
+
+export const deleteAvatar = async (req, res) => {
+  req.user.avatar = undefined;
+  await req.user.save();
+  res.send();
+};
+
+export const getAvatar = async (req, res) => {
+  try {
+    const user = await Admin.findById(req.params.id);
+
+    if (!user || !user.avatar) {
+      throw new Error();
+    }
+
+    res.set('Content-Type', 'image/png');
+    res.send(user.avatar);
+  } catch (e) {
+    res.status(404).send();
+  }
+};
+
+export const uploadAvatar = async (req, res) => {
+  try {
+    const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer();
+    req.user.avatar = buffer;
+    await req.user.save();
+    res.send();
+  } catch (e) {
+    res.status(400).send({ error: e.message });
+  }
+};
 
 export const getAdminList = async (req, res) => {
   const limit = parseInt(req.query.limit, 10) || 50;

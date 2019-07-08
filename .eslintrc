@@ -3,6 +3,9 @@
   "rules": {
     "no-console": "off",
     "eqeqeq": "off",
-    "no-multiple-empty-lines": ["error", { "max": 3 }]
+    "no-multiple-empty-lines": ["error", {
+      "max": 3
+    }],
+    "no-param-reassign": "off"
   }
 }
