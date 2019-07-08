@@ -82,7 +82,6 @@ AdminSchema.methods = {
       _id: this._id,
       username: this.username,
       fullname: this.fullname,
-      avatar: this.avatar,
       phone: this.phone,
       email: this.email,
     };
