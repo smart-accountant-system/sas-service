@@ -22,7 +22,7 @@ export async function getInvoiceList(req, res) {
         (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
           { isRemoved: false, company: req.user.company };
 
-    const invoices = await Invoice.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
+    const invoices = await Invoice.find(queries).skip(skip).limit(limit).sort({ createdAt: -1 })
       .populate('createdBy', '-_id username fullname');
     const total = await Invoice.count(queries);
     return res.status(HTTPStatus.OK).json({ invoices, total });
@@ -41,7 +41,7 @@ export async function getDetailInvoice(req, res) {
     }
 
     const queries = { isRemoved: false, invoice: invoice._id, company: req.user.company };
-    const payments = await Payment.find(queries).limit(50).sort({ createdAt: 1 })
+    const payments = await Payment.find(queries).limit(50).sort({ createdAt: -1 })
       .populate('category', '-_id name');
     const total = await Payment.count(queries);
 

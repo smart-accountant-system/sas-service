@@ -24,7 +24,7 @@ export async function getTransactionList(req, res) {
         (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
           { isRemoved: false, company: req.user.company };
 
-    const transactions = await Transaction.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
+    const transactions = await Transaction.find(queries).skip(skip).limit(limit).sort({ createdAt: -1 })
       .populate('fromAccount.id', 'name')
       .populate('toAccount.id', 'name')
       .populate('checkedBy', 'fullname');
