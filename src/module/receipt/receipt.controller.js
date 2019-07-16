@@ -28,7 +28,7 @@ export async function getReceiptList(req, res) {
         (endDate) ? { isRemoved: false, company: req.user.company, createdAt: { $lt: endDate } } :
           { isRemoved: false, company: req.user.company };
     queries = status == 1 ? { ...queries, status: false } : status == 2 ? { ...queries, status: true } : queries; 
-    const receipts = await Receipt.find(queries).skip(skip).limit(limit).sort({ createdAt: 1 })
+    const receipts = await Receipt.find(queries).skip(skip).limit(limit).sort({ createdAt: -1 })
       .populate('customer')
       .populate({
         path: 'payment',
