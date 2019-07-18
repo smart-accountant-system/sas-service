@@ -64,7 +64,5 @@ If not, please <b>DO NOT</b> click on the link above.<br />
 <b><font color="red">This email is valid in ${constants.MAIL_TOKEN_LIFESPAN} days left.</font></b><br />
 <br /><br />
 SAS Team.
-`
-
-  `,
+`,
 });
