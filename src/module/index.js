@@ -11,6 +11,7 @@ import receiptRoutes from './receipt/receipt.route';
 import dashboardRoutes from './dashboard/dashboard.route';
 import uploadRoutes from './upload/upload.route';
 import registerRoutes from './register/register.route';
+import deepLinkingRoutes from './deep-linking/deep-linking.route';
 
 export default app => {
   app.use('/admins', adminRoutes);
@@ -26,4 +27,5 @@ export default app => {
   app.use('/dashboard', dashboardRoutes);
   app.use('/upload', uploadRoutes);
   app.use('/register', registerRoutes);
+  app.use('/deep-linking', deepLinkingRoutes);
 };

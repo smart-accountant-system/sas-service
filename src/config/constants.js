@@ -6,6 +6,7 @@ const devConfig = {
   COMPANY_CONFIRM_LINK: 'http://localhost:7777/companies/confirm/',
   EMLOYEE_CONFIRM_LINK: 'http://localhost:7777/employees/confirm/',
   PUBLISH_EXPO_LINK: 'exp://exp.host/@nhatquangsin/smart-accountant-system-native/--/',
+  PUBLISH_DEEP_LINK: 'http://localhost:7777/deep-linking/',
 };
 
 const prodConfig = {
@@ -16,6 +17,8 @@ const prodConfig = {
   COMPANY_CONFIRM_LINK: 'https://smart-accountant-system.herokuapp.com/companies/confirm/',
   EMLOYEE_CONFIRM_LINK: 'https://smart-accountant-system.herokuapp.com/employees/confirm/',
   PUBLISH_EXPO_LINK: 'exp://exp.host/@nhatquangsin/smart-accountant-system-native/--/',
+  PUBLISH_DEEP_LINK: 'https://smart-accountant-system.herokuapp.com/deep-linking/',
+
 };
 
 const defaultConfig = {
