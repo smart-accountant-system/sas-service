@@ -19,7 +19,7 @@ Dear <b>${name}</b>,<br />
 You have just made a request to confirm email via Smart Accountant System for <b>your company</b>. 
 To complete the confirmation, please click <a href="${constants.COMPANY_CONFIRM_LINK + token}">here</a> or 
 copy and paste the link below in the browser:<br />
-${constants.COMPANY_CONFIRM_LINK + token}<br />
+<a>${constants.COMPANY_CONFIRM_LINK + token}</a><br />
 <br /><br />
 If not, please <b>DO NOT</b> click on the link above.<br />
 <b><font color="red">This email is valid in ${constants.MAIL_TOKEN_LIFESPAN} days left.</font></b><br />
