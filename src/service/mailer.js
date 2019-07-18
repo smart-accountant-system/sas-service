@@ -56,10 +56,11 @@ export const getResetPasswordMail = ({ fullname, email }, token) => ({
   html: `Dear <b>${fullname}</b>,<br />
 <br />
 You have just made a request to reset password via Smart Accountant System. 
-To complete the confirmation, please click <a href="${constants.PUBLISH_DEEP_LINK + token}">here</a> or 
-copy and paste the link below in the browser:<br />
-${constants.PUBLISH_DEEP_LINK + token}
-<br /><br />
+Because this system is in the period of beta, so to reset your password please select one in these following options:<br/>
+1. <a href="${constants.PUBLISH_DEEP_LINK + token}">Expo publish</a>. <br />
+2. <a href="${constants.DEBUG_DEEP_LINK + token}">Expo debug</a>. <br />
+3. <a href="${constants.RELEASE_DEEP_LINK + token}">Beta verion</a>. <br />
+
 If not, please <b>DO NOT</b> click on the link above.<br />
 <b><font color="red">This email is valid in ${constants.MAIL_TOKEN_LIFESPAN} days left.</font></b><br />
 <br /><br />

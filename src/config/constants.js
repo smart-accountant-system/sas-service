@@ -6,7 +6,11 @@ const devConfig = {
   COMPANY_CONFIRM_LINK: 'http://localhost:7777/companies/confirm/',
   EMLOYEE_CONFIRM_LINK: 'http://localhost:7777/employees/confirm/',
   PUBLISH_EXPO_LINK: 'exp://exp.host/@nhatquangsin/smart-accountant-system-native/--/',
-  PUBLISH_DEEP_LINK: 'http://localhost:7777/deep-linking/',
+  PUBLISH_DEEP_LINK: 'http://localhost:7777/deep-linking/expo-publish/',
+  DEBUG_EXPO_LINK: 'exp://127.0.0.1:19000/--/',
+  DEBUG_DEEP_LINK: 'http://localhost:7777/deep-linking/expo-debug/',
+  RELEASE_EXPO_LINK: 'sas://--/',
+  RELEASE_DEEP_LINK: 'http://localhost:7777/deep-linking/release/',
 };
 
 const prodConfig = {
@@ -17,8 +21,11 @@ const prodConfig = {
   COMPANY_CONFIRM_LINK: 'https://smart-accountant-system.herokuapp.com/companies/confirm/',
   EMLOYEE_CONFIRM_LINK: 'https://smart-accountant-system.herokuapp.com/employees/confirm/',
   PUBLISH_EXPO_LINK: 'exp://exp.host/@nhatquangsin/smart-accountant-system-native/--/',
-  PUBLISH_DEEP_LINK: 'https://smart-accountant-system.herokuapp.com/deep-linking/',
-
+  PUBLISH_DEEP_LINK: 'https://smart-accountant-system.herokuapp.com/deep-linking/expo-publish/',
+  DEBUG_EXPO_LINK: 'exp://127.0.0.1:19000/--/',
+  DEBUG_DEEP_LINK: 'https://smart-accountant-system.herokuapp.com/deep-linking/expo-debug/',
+  RELEASE_EXPO_LINK: 'sas://--/',
+  RELEASE_DEEP_LINK: 'https://smart-accountant-system.herokuapp.com/release/',
 };
 
 const defaultConfig = {
