@@ -49,9 +49,22 @@ SAS Team.
 });
 
 
-export const getResetPasswordMail = ({ email }, token) => ({
+export const getResetPasswordMail = ({ fullname, email }, token) => ({
   from: constants.EMAIL_US,
   to: email,
   subject: '[Smart Accountant System] Reset password for employee',
-  html: `Please click  <a href="${constants.PUBLISH_EXPO_LINK + token}">here</a> to reset your password.`,
+  html: `Dear <b>${fullname}</b>,<br />
+<br />
+You have just made a request to reset password via Smart Accountant System. 
+To complete the confirmation, please click <a href="${constants.PUBLISH_EXPO_LINK + token}">here</a> or 
+copy and paste the link below in the browser:<br />
+${constants.PUBLISH_EXPO_LINK + token}
+<br /><br />
+If not, please <b>DO NOT</b> click on the link above.<br />
+<b><font color="red">This email is valid in ${constants.MAIL_TOKEN_LIFESPAN} days left.</font></b><br />
+<br /><br />
+SAS Team.
+`
+
+  `,
 });
