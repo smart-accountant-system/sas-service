@@ -25,7 +25,7 @@ const prodConfig = {
   DEBUG_EXPO_LINK: 'exp://127.0.0.1:19000/--/',
   DEBUG_DEEP_LINK: 'https://smart-accountant-system.herokuapp.com/deep-linking/expo-debug/',
   RELEASE_EXPO_LINK: 'sas://--/',
-  RELEASE_DEEP_LINK: 'https://smart-accountant-system.herokuapp.com/release/',
+  RELEASE_DEEP_LINK: 'https://smart-accountant-system.herokuapp.com/deep-linking/release/',
 };
 
 const defaultConfig = {
